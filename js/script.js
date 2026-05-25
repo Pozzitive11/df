@@ -17,6 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
         navMenu.classList.remove("active");
       });
     });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (event) => {
+      if (navMenu.classList.contains("active") && !navMenu.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+        hamburgerBtn.classList.remove("active");
+        navMenu.classList.remove("active");
+      }
+    });
   }
   
   // 2. IntersectionObserver for Reveal on Scroll
