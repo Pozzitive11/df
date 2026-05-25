@@ -1,0 +1,23 @@
+{
+  "name": "Фабрика даних — Кредитний реєстр 2.0 НБУ",
+  "short_name": "Datafactory",
+  "description": "Автоматизована подача звіту D050 до Кредитного реєстру 2.0 НБУ",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0b5fff",
+  "background_color": "#0e1b2c",
+  "icons": [
+    {
+      "src": "/images/favicons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/favicons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
