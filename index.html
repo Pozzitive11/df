@@ -5,15 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Звітність до Кредитного реєстру 2.0 НБУ | Фабрика даних — Київ</title>
 <meta name="description" content="Автоматизована подача звіту D050 до Кредитного реєстру 2.0 НБУ для фінкомпаній. Власний застосунок, BI-дашборди, команда аналітиків. Дізнайтесь більше →" />
+<meta name="keywords" content="Кредитний реєстр 2.0 НБУ, звітність D050, небанківські фінансові установи, автоматизована звітність НБУ, BI дашборди, Фабрика даних, Київ, фінансові компанії, ломбарди, лізинг" />
+<meta name="author" content="Фабрика даних — datafactory.com.ua" />
 <link rel="canonical" href="https://datafactory.com.ua/" />
 <link rel="alternate" hreflang="uk" href="https://datafactory.com.ua/" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="theme-color" content="#0b5fff" />
+<meta name="theme-color" content="#0b5fff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0b3acc" media="(prefers-color-scheme: dark)" />
+<!-- Geo / Local SEO -->
+<meta name="geo.region" content="UA-30" />
+<meta name="geo.placename" content="Київ" />
+<meta name="geo.position" content="50.4501;30.5234" />
+<meta name="ICBM" content="50.4501, 30.5234" />
 
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="preload" href="images/datafactory-logo-wordmark.svg" as="image" />
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&font-display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -34,7 +45,7 @@
 
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="images/datafactory-logo-primary.svg">
-    <link rel="apple-touch-icon" href="images/datafactory-logo-primary.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
     <link rel="stylesheet" href="css/style.css" />
 
@@ -929,7 +940,12 @@
       "name": "Фабрика даних",
       "legalName": "ТОВ «Фабрика даних»",
       "url": "https://datafactory.com.ua/",
-      "logo": "https://datafactory.com.ua/images/datafactory-logo-primary.svg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://datafactory.com.ua/images/datafactory-logo-primary.svg",
+        "width": 160,
+        "height": 44
+      },
       "description": "Фабрика даних — автоматизована подача звіту D050 до Кредитного реєстру 2.0 НБУ. Власний застосунок, BI-дашборди, команда аналітиків.",
       "telephone": "+380639753192",
       "email": "EV@datafactory.com.ua",
@@ -937,14 +953,25 @@
         "@type": "PostalAddress",
         "streetAddress": "вул. Воробйова Г.Г., 10",
         "addressLocality": "Київ",
+        "addressRegion": "Київська область",
         "addressCountry": "UA"
       },
-      "areaServed": "UA",
-      "foundingDate": "2023"
+      "areaServed": {
+        "@type": "Country",
+        "name": "Ukraine"
+      },
+      "foundingDate": "2023",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+380639753192",
+        "email": "EV@datafactory.com.ua",
+        "contactType": "sales",
+        "availableLanguage": ["Ukrainian"]
+      }
     }
     </script>
 
-    <!-- Structured Data: FAQPage -->
+    <!-- Structured Data: SoftwareApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -952,11 +979,45 @@
       "name": "Кредитний реєстр 2.0 НБУ від Фабрики даних",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
+      "description": "Автоматизований застосунок для подачі звіту D050 до Кредитного реєстру 2.0 НБУ. Валідація 500+ правил, BI-дашборди, мультикомпанійність.",
       "offers": {
         "@type": "Offer",
-        "price": "0",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "description": "Вартість розраховується індивідуально після аудиту"
+        },
         "priceCurrency": "UAH"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Фабрика даних",
+        "url": "https://datafactory.com.ua/"
       }
+    }
+    </script>
+
+    <!-- Structured Data: Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Автоматизована подача звіту D050 до Кредитного реєстру 2.0 НБУ",
+      "description": "Повний цикл регуляторної звітності для небанківських фінансових установ: збір, валідація, подача та моніторинг статусів звіту D050 до Кредитного реєстру НБУ.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Фабрика даних",
+        "url": "https://datafactory.com.ua/"
+      },
+      "serviceType": "Regulatory Reporting Automation",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Ukraine"
+      },
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Небанківські фінансові установи, ломбарди, лізингові компанії, колекторські компанії"
+      },
+      "url": "https://datafactory.com.ua/#credit-registry"
     }
     </script>
 
@@ -979,7 +1040,7 @@
           "name": "Як швидко ви запустите нас у бойовий режим?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Орієнтовний план: спочатку аудит та маппінг даних, потім тестові подачі за минулий період, далі — реальна подача за поточний звітний період. Конкретні строки погоджуємо індивідуально на етапі аудиту."
+            "text": "Орієнтовний план: спочатку аудит та маппінг даних, потім тестові подачі за минулий період, далі — реальна подача за поточний звітний період. Конкретні строки погоджуємо індивідуально на етапі аудиту: вони залежать від якості ваших даних, кількості джерел та внутрішніх погоджень."
           }
         },
         {
@@ -996,6 +1057,30 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Адаптація під нові постанови входить у послугу повного циклу. Це частина нашої роботи — слідкувати за змінами та оновлювати застосунок до набрання чинності нових правил."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Як ми передаємо дані у ваш застосунок?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Через API (REST) або через файли Excel/CSV — як зручніше вашій команді. На етапі аудиту визначаємо найзручніший формат обміну."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи можна обслуговувати декілька юридичних осіб з одного застосунку?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так — застосунок мультикомпанійний. Кожна компанія має свої дані, ролі та звітність у межах єдиного адміністративного інтерфейсу. Зручно для холдингів, аутсорсу бухобліку та профільних консультантів."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Хто несе відповідальність за зміст звіту перед НБУ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Юридично — завжди фінансова установа, яка підписує звіт КЕП. Ми технічно гарантуємо коректність формування, валідацію, подачу та відстеження статусів. SLA та межі відповідальності фіксуються у договорі."
           }
         }
       ]
