@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Фабрика даних — програмні рішення та дата-сервіси для бізнесу</title>
+<meta name="description" content="ТОВ «Фабрика даних» — українська компанія, що розробляє програмні рішення, працює з даними та автоматизує процеси для фінансових, юридичних і рітейл-компаній. Флагманська послуга — супровід звітності до Кредитного реєстру 2.0 НБУ." />
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#F6F8FB;
+    --bg-dark:#0E1B2C;
+    --primary:#0B5FFF;
+    --primary-600:#0848C2;
+    --accent:#FF7A1A;
+    --text:#0E1B2C;
+    --muted:#5A6B81;
+    --border:#E5EAF2;
+    --success:#1AA37A;
+    --shadow: 0 6px 24px rgba(14,27,44,.06);
+    --radius: 14px;
+    color-scheme: light;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;scroll-behavior:smooth}
+  body{
+    font-family:'Inter','Segoe UI','Roboto','Helvetica Neue',Arial,sans-serif;
+    color:var(--text);
+    line-height:1.55;
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border-radius:10px;font-weight:600;
+    transition:all .2s ease;cursor:pointer;border:none;font-size:15px;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:var(--primary-600);text-decoration:none}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .btn-light{background:#fff;color:var(--bg-dark)}
+  .btn-light:hover{background:#f0f4fa;text-decoration:none}
+
+  /* HEADER */
+  header.site{
+    border-bottom:1px solid var(--border);
+    background:#fff;position:sticky;top:0;z-index:50;
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--text)}
+  .logo img{height:44px;width:auto;display:block}
+  .logo span{font-size:16px}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{color:var(--muted);font-weight:500;font-size:15px}
+  .nav-links a:hover{color:var(--text);text-decoration:none}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+
+  /* HERO */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 90% -10%, rgba(11,95,255,.10), transparent 60%),
+      radial-gradient(900px 400px at -10% 110%, rgba(255,122,26,.08), transparent 60%),
+      var(--bg);
+    padding:84px 0 80px;
+    position:relative;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    background:rgba(11,95,255,.08);color:var(--primary);
+    font-weight:600;font-size:13px;letter-spacing:.2px;
+  }
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px rgba(11,95,255,.18)}
+  .hero h1{font-size:46px;line-height:1.1;margin:18px 0 18px;letter-spacing:-.5px}
+  .hero h1 span.accent{
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{font-size:18px;color:var(--muted);margin:0 0 28px;max-width:560px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-meta{display:flex;gap:32px;margin-top:36px;flex-wrap:wrap}
+  .hero-meta .item{display:flex;flex-direction:column}
+  .hero-meta .num{font-size:28px;font-weight:700;color:var(--text)}
+  .hero-meta .lbl{color:var(--muted);font-size:14px}
+
+  /* HERO VISUAL — дашборд */
+  .dashboard{
+    background:#fff;border:1px solid var(--border);border-radius:18px;
+    box-shadow:var(--shadow);padding:18px;
+    transform:perspective(1000px) rotateY(-3deg) rotateX(2deg);
+  }
+  .dash-bar{display:flex;align-items:center;gap:6px;margin-bottom:14px}
+  .dash-bar .dot{width:10px;height:10px;border-radius:50%}
+  .dash-bar .dot.r{background:#FF6B6B}
+  .dash-bar .dot.y{background:#FFD166}
+  .dash-bar .dot.g{background:#06D6A0}
+  .dash-bar .url{
+    margin-left:10px;flex:1;
+    background:var(--bg-soft);border-radius:6px;padding:5px 10px;
+    font-size:12px;color:var(--muted);
+  }
+  .dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .stat{
+    background:linear-gradient(180deg,#F6F8FB,#fff);
+    border:1px solid var(--border);border-radius:10px;padding:12px;
+  }
+  .stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .stat .val{font-size:20px;font-weight:700;margin-top:4px}
+  .stat .delta{font-size:12px;color:var(--success);margin-top:2px}
+  .dash-chart{
+    background:linear-gradient(180deg,#fff,#F6F8FB);
+    border:1px solid var(--border);border-radius:10px;padding:14px;height:180px;
+    position:relative;overflow:hidden;
+  }
+  .dash-chart .title{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .dash-chart svg{width:100%;height:140px}
+  .dash-table{margin-top:12px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .dash-table .row{display:grid;grid-template-columns:1fr 80px 80px 90px;gap:10px;padding:8px 12px;font-size:12px;align-items:center}
+  .dash-table .row.head{background:var(--bg-soft);color:var(--muted);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:.5px}
+  .dash-table .row + .row{border-top:1px solid var(--border)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600}
+  .pill.ok{background:#E5F8F1;color:var(--success)}
+  .pill.wait{background:#FFF4E6;color:#B45309}
+  .pill.err{background:#FDE7E7;color:#B42318}
+
+  /* SECTIONS */
+  section{padding:80px 0}
+  section.alt{background:var(--bg-soft)}
+  .section-head{text-align:center;max-width:780px;margin:0 auto 48px}
+  .eyebrow{
+    color:var(--primary);font-weight:700;font-size:13px;
+    letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;
+  }
+  .section-head h2{font-size:36px;line-height:1.15;margin:0 0 14px;letter-spacing:-.4px}
+  .section-head p{color:var(--muted);font-size:17px;margin:0}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .about-text p{font-size:16px;color:var(--text);margin:0 0 16px}
+  .about-text p:last-child{margin:0}
+  .values{display:grid;grid-template-columns:1fr;gap:14px}
+  .value{
+    background:#fff;border:1px solid var(--border);border-radius:12px;
+    padding:18px 20px;display:flex;gap:14px;align-items:flex-start;
+  }
+  .value-icon{
+    width:42px;height:42px;flex:none;border-radius:10px;
+    background:rgba(11,95,255,.10);color:var(--primary);
+    display:grid;place-items:center;font-size:18px;font-weight:700;
+  }
+  .value h4{margin:0 0 4px;font-size:16px}
+  .value p{margin:0;color:var(--muted);font-size:14px}
+
+  /* CLIENTS */
+  .clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .client-card{
+    background:#fff;border:1px solid var(--border);border-radius:14px;
+    padding:28px 22px;text-align:left;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .client-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .client-icon{
+    width:52px;height:52px;border-radius:14px;
+    background:linear-gradient(135deg,rgba(11,95,255,.12),rgba(255,122,26,.12));
+    display:grid;place-items:center;font-size:24px;margin-bottom:16px;
+  }
+  .client-card h3{margin:0 0 6px;font-size:18px}
+  .client-card p{margin:0;color:var(--muted);font-size:14px}
+
+  /* CR 2.0 INTRO */
+  .cr-intro{
+    background:linear-gradient(135deg,var(--bg-dark) 0%, #1A2C44 100%);
+    color:#fff;border-radius:20px;padding:40px;
+    display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .cr-intro::before{
+    content:"";position:absolute;top:-100px;right:-100px;width:280px;height:280px;
+    background:radial-gradient(circle,rgba(11,95,255,.4),transparent 70%);
+  }
+  .cr-intro > *{position:relative;z-index:1}
+  .cr-intro .eyebrow{color:#7EA0FF}
+  .cr-intro h2{margin:8px 0 12px;font-size:30px;letter-spacing:-.3px}
+  .cr-intro p{color:#B6C2D5;margin:0 0 18px;font-size:15.5px}
+  .cr-intro-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* CONTEXT (КР 2.0) */
+  .ctx-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .ctx-card{
+    background:#fff;border:1px solid var(--border);border-radius:16px;
+    padding:28px;box-shadow:var(--shadow);
+  }
+  .ctx-list{display:grid;gap:14px;margin-top:18px}
+  .ctx-list .li{display:flex;gap:12px;align-items:flex-start}
+  .ctx-list .ico{
+    width:24px;height:24px;flex:none;border-radius:6px;
+    background:rgba(11,95,255,.1);color:var(--primary);
+    display:grid;place-items:center;font-weight:800;font-size:13px;
+  }
+  .ctx-warn{
+    margin-top:18px;padding:14px 16px;border-radius:10px;
+    background:#FFF4E6;border-left:4px solid var(--accent);
+    color:#7A4A14;font-size:14px;
+  }
+
+  /* WHY US */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .why-card{
+    background:#fff;border:1px solid var(--border);border-radius:14px;
+    padding:28px 24px;transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .why-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .why-icon{
+    width:48px;height:48px;border-radius:12px;
+    background:linear-gradient(135deg,rgba(11,95,255,.12),rgba(255,122,26,.12));
+    display:grid;place-items:center;color:var(--primary);
+    font-size:22px;margin-bottom:18px;
+  }
+  .why-card h3{margin:0 0 8px;font-size:18px}
+  .why-card p{margin:0;color:var(--muted);font-size:14.5px}
+
+  /* FORMATS */
+  .formats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .format{
+    background:#fff;border:1px solid var(--border);border-radius:18px;
+    padding:32px 28px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .2s ease, box-shadow .2s ease;position:relative;
+  }
+  .format:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .format.featured{
+    border-color:var(--primary);
+    box-shadow:0 12px 36px rgba(11,95,255,.10);
+  }
+  .format.featured::before{
+    content:"Найповніший формат";position:absolute;top:-14px;right:24px;
+    background:var(--primary);color:#fff;padding:6px 12px;border-radius:999px;
+    font-size:12px;font-weight:600;letter-spacing:.2px;
+  }
+  .format-icon{
+    width:52px;height:52px;border-radius:14px;
+    background:linear-gradient(135deg,rgba(11,95,255,.12),rgba(255,122,26,.12));
+    display:grid;place-items:center;color:var(--primary);
+    font-size:24px;
+  }
+  .format h3{margin:0;font-size:20px;letter-spacing:-.2px}
+  .format p.lead{margin:0;color:var(--muted);font-size:14.5px;line-height:1.55}
+  .format ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:14.5px}
+  .format ul li{padding-left:26px;position:relative;line-height:1.45}
+  .format ul li::before{
+    content:"";position:absolute;left:0;top:5px;width:16px;height:16px;
+    background:rgba(11,95,255,.10);border-radius:50%;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B5FFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size:11px;background-repeat:no-repeat;background-position:center;
+  }
+  .format-foot{
+    margin-top:auto;padding-top:14px;border-top:1px dashed var(--border);
+    font-size:13px;color:var(--muted);font-style:italic;
+  }
+
+  /* PRODUCT DETAILS */
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .svc{
+    background:#fff;border:1px solid var(--border);border-radius:16px;
+    padding:32px;display:flex;flex-direction:column;gap:14px;
+  }
+  .svc h3{margin:0;font-size:22px;display:flex;align-items:center;gap:12px}
+  .svc h3 .num{
+    width:34px;height:34px;border-radius:10px;background:rgba(11,95,255,.1);
+    color:var(--primary);display:grid;place-items:center;font-weight:800;font-size:14px;
+  }
+  .svc p{margin:0;color:var(--muted);font-size:15px}
+  .svc ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+  .svc ul li{padding-left:26px;position:relative;font-size:14.5px;color:var(--text)}
+  .svc ul li::before{
+    content:"";position:absolute;left:0;top:6px;width:16px;height:16px;
+    background:rgba(26,163,122,.15);border-radius:50%;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231AA37A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size:11px;background-repeat:no-repeat;background-position:center;
+  }
+
+  /* APP MOCKUPS (на основі реальних скріншотів) */
+  .app-section{padding:80px 0}
+  .app-grid{display:grid;grid-template-columns:1fr;gap:32px}
+  .app-mockup{
+    background:#fff;border:1px solid var(--border);border-radius:18px;
+    overflow:hidden;box-shadow:var(--shadow);
+  }
+  .app-mockup-header{
+    background:linear-gradient(135deg,var(--primary) 0%, #2C7AFF 100%);
+    color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+  .app-mockup-header h3{margin:0;font-size:18px;letter-spacing:-.2px}
+  .app-mockup-header .sub{font-size:12.5px;color:rgba(255,255,255,.78);margin-top:2px}
+  .app-mockup-header .tag{
+    background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);
+    color:#fff;font-size:11.5px;font-weight:600;
+    padding:5px 10px;border-radius:999px;
+  }
+  .app-mockup-body{padding:24px}
+  .app-mockup-caption{
+    padding:16px 24px;background:var(--bg-soft);
+    border-top:1px solid var(--border);font-size:13.5px;color:var(--muted);
+  }
+  .app-mockup-caption b{color:var(--text)}
+
+  /* mockup 1: multi-company selector */
+  .mk-companies{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;align-items:start}
+  .mk-companies-left{
+    background:linear-gradient(180deg,#F6F8FB,#fff);
+    border:1px solid var(--border);border-radius:14px;padding:24px;
+  }
+  .mk-companies-left .ico{
+    width:42px;height:42px;border-radius:10px;
+    background:rgba(11,95,255,.12);color:var(--primary);
+    display:grid;place-items:center;font-size:18px;margin-bottom:14px;
+  }
+  .mk-companies-left h4{margin:0 0 6px;font-size:18px}
+  .mk-companies-left p{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+  .mk-companies-left .pill-soft{
+    display:inline-block;background:rgba(11,95,255,.10);color:var(--primary);
+    font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;
+  }
+  .mk-companies-list{
+    background:#fff;border:1px solid var(--border);border-radius:14px;padding:8px;
+  }
+  .mk-companies-list .label{
+    background:rgba(11,95,255,.06);color:var(--primary);
+    font-weight:600;font-size:12.5px;padding:10px 14px;border-radius:10px;margin-bottom:6px;
+  }
+  .mk-company{
+    display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;
+    cursor:pointer;border:1px solid transparent;
+  }
+  .mk-company:hover{background:rgba(11,95,255,.04);border-color:var(--border)}
+  .mk-company + .mk-company{margin-top:2px}
+  .mk-avatar{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;letter-spacing:.5px;
+  }
+  .av-1{background:linear-gradient(135deg,#8B5CF6,#6366F1)}
+  .av-2{background:linear-gradient(135deg,#EC4899,#F472B6)}
+  .av-3{background:linear-gradient(135deg,#06B6D4,#22D3EE)}
+  .av-4{background:linear-gradient(135deg,#10B981,#34D399)}
+  .av-5{background:linear-gradient(135deg,#F59E0B,#FBBF24)}
+  .mk-company-name{font-weight:600;font-size:14px;color:var(--text)}
+  .mk-company-code{font-size:12px;color:var(--muted);margin-top:1px;font-family:monospace}
+  .mk-company .chev{margin-left:auto;color:var(--muted);font-size:18px}
+
+  /* mockup 2: stages progress */
+  .mk-stages{
+    background:#fff;
+  }
+  .mk-stages-progress{
+    display:grid;grid-template-columns:repeat(6,1fr);position:relative;
+    margin-bottom:28px;
+  }
+  .mk-stages-progress::before{
+    content:"";position:absolute;left:6%;right:6%;top:22px;height:2px;
+    background:var(--border);z-index:0;
+  }
+  .mk-stage{
+    text-align:center;position:relative;z-index:1;
+  }
+  .mk-stage .circ{
+    width:44px;height:44px;border-radius:50%;
+    background:#fff;border:2px solid var(--border);
+    margin:0 auto 8px;display:grid;place-items:center;
+    font-weight:700;color:var(--muted);font-size:15px;
+  }
+  .mk-stage.done .circ{background:var(--success);border-color:var(--success);color:#fff}
+  .mk-stage.current .circ{
+    background:var(--primary);border-color:var(--primary);color:#fff;
+    box-shadow:0 0 0 6px rgba(11,95,255,.15);
+  }
+  .mk-stage .name{font-size:12.5px;color:var(--muted);line-height:1.3;padding:0 4px}
+  .mk-stage.current .name{color:var(--text);font-weight:600}
+  .mk-stages-current{
+    background:linear-gradient(135deg,rgba(11,95,255,.05),rgba(11,95,255,.02));
+    border:1px solid rgba(11,95,255,.20);border-radius:14px;padding:22px;
+  }
+  .mk-stages-current h4{
+    margin:0 0 4px;font-size:18px;display:flex;align-items:center;gap:10px;
+  }
+  .mk-stages-current .badge-running{
+    background:var(--success);color:#fff;font-size:11px;font-weight:700;
+    padding:3px 9px;border-radius:999px;letter-spacing:.3px;
+  }
+  .mk-stages-current .desc{margin:0 0 14px;color:var(--muted);font-size:13.5px}
+  .mk-stages-bar{
+    height:8px;background:rgba(11,95,255,.10);border-radius:999px;overflow:hidden;margin-bottom:8px;
+  }
+  .mk-stages-bar > div{
+    height:100%;background:linear-gradient(90deg,var(--primary),#34D399);
+    width:100%;border-radius:999px;
+  }
+  .mk-stages-bar-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:14px}
+  .mk-stages-meta{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12.5px;
+  }
+  .mk-stages-meta .item{
+    background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 12px;
+  }
+  .mk-stages-meta .lbl{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  .mk-stages-meta .val{color:var(--text);font-weight:600;font-size:13.5px;margin-top:2px}
+
+  /* mockup 3: period comparison table */
+  .mk-cmp-toolbar{
+    display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;
+  }
+  .mk-pill{
+    background:rgba(11,95,255,.08);color:var(--primary);
+    font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .mk-pill.muted{background:var(--bg-soft);color:var(--muted)}
+  .mk-cmp-table{
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;
+    font-size:12.5px;
+  }
+  .mk-cmp-table .row{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+    align-items:center;padding:10px 14px;
+  }
+  .mk-cmp-table .row + .row{border-top:1px solid var(--border)}
+  .mk-cmp-table .row.head{
+    background:var(--bg-soft);color:var(--muted);
+    font-weight:600;font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;
+  }
+  .mk-cmp-table .row.cat{
+    background:rgba(11,95,255,.04);font-weight:700;color:var(--primary);
+    text-transform:none;font-size:12.5px;letter-spacing:0;
+  }
+  .mk-cmp-table .row.cat.ubki{background:rgba(26,163,122,.06);color:var(--success)}
+  .mk-cmp-table .row.highlighted{
+    background:rgba(11,95,255,.06);font-weight:600;color:var(--primary);
+  }
+  .mk-cmp-table .num{text-align:right;font-variant-numeric:tabular-nums}
+  .mk-cmp-table .delta-pos{color:var(--success);font-weight:600}
+  .mk-cmp-table .delta-neg{color:#B42318;font-weight:600}
+
+  /* PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+  .step{
+    background:#fff;border:1px solid var(--border);border-radius:14px;
+    padding:26px 22px;position:relative;
+  }
+  .step .num{
+    position:absolute;top:-14px;left:22px;
+    width:36px;height:36px;border-radius:10px;background:var(--primary);
+    color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;
+    box-shadow:0 6px 14px rgba(11,95,255,.25);
+  }
+  .step h4{margin:14px 0 6px;font-size:17px}
+  .step p{margin:0;color:var(--muted);font-size:14px}
+
+  /* OFFER */
+  .offer-card{
+    background:#fff;border:1px solid var(--border);border-radius:20px;
+    padding:40px;box-shadow:var(--shadow);
+  }
+  .offer-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:48px;align-items:stretch}
+  .offer-col h3{margin:0 0 18px;font-size:22px}
+  .offer-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;font-size:15px}
+  .offer-list li{padding-left:30px;position:relative;line-height:1.4}
+  .offer-list li::before{
+    content:"";position:absolute;left:0;top:4px;width:18px;height:18px;
+    border-radius:50%;background:rgba(11,95,255,.10);
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B5FFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size:11px;background-repeat:no-repeat;background-position:center;
+  }
+  .offer-side{display:flex}
+  .offer-side-inner{
+    background:linear-gradient(135deg,#0E1B2C 0%, #1A2C44 100%);
+    color:#fff;border-radius:16px;padding:30px;
+    display:flex;flex-direction:column;gap:14px;width:100%;
+    position:relative;overflow:hidden;
+  }
+  .offer-side-inner::before{
+    content:"";position:absolute;top:-60px;right:-60px;width:180px;height:180px;
+    background:radial-gradient(circle,rgba(11,95,255,.4),transparent 70%);
+  }
+  .offer-side-inner > *{position:relative;z-index:1}
+  .offer-eyebrow{
+    color:#7EA0FF;font-weight:700;font-size:12px;
+    letter-spacing:1px;text-transform:uppercase;
+  }
+  .offer-side-text{color:#B6C2D5;font-size:14.5px;line-height:1.55;margin:0}
+  .offer-side-note{color:#8896AB;font-size:12.5px;margin:0}
+
+  /* FAQ */
+  .faq{max-width:860px;margin:0 auto}
+  details{
+    background:#fff;border:1px solid var(--border);border-radius:12px;
+    padding:18px 22px;margin-bottom:12px;cursor:pointer;
+  }
+  details[open]{border-color:var(--primary)}
+  summary{
+    list-style:none;font-weight:600;font-size:16px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";font-size:24px;color:var(--primary);font-weight:300;
+    transition:transform .2s ease;
+  }
+  details[open] summary::after{content:"–"}
+  details p{margin:14px 0 0;color:var(--muted);font-size:15px}
+
+  /* CAREER */
+  .career-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:32px}
+  .vacancy{
+    background:#fff;border:1px solid var(--border);border-radius:16px;
+    padding:28px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .vacancy:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--primary)}
+  .vacancy-tag{
+    display:inline-block;padding:4px 10px;border-radius:6px;
+    background:rgba(11,95,255,.10);color:var(--primary);
+    font-size:12px;font-weight:600;letter-spacing:.2px;width:max-content;
+  }
+  .vacancy-tag.mid{background:rgba(255,122,26,.10);color:var(--accent)}
+  .vacancy-tag.junior{background:rgba(26,163,122,.12);color:var(--success)}
+  .vacancy h3{margin:0;font-size:20px}
+  .vacancy p{margin:0;color:var(--muted);font-size:14.5px;flex:1}
+  .vacancy ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--text)}
+  .vacancy ul li{padding-left:18px;position:relative}
+  .vacancy ul li::before{content:"•";position:absolute;left:0;color:var(--primary);font-weight:800}
+  /* Academy banner */
+  .academy{
+    background:#fff;border:1px solid var(--border);border-radius:18px;
+    padding:0;margin-bottom:24px;
+    display:grid;grid-template-columns:.45fr .95fr;gap:0;align-items:stretch;
+    overflow:hidden;box-shadow:var(--shadow);
+  }
+  .academy-left{
+    background:linear-gradient(135deg,#FF7A1A 0%, #FFAA5A 60%, #FFD166 100%);
+    color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+  .academy-left::before{
+    content:"";position:absolute;top:-60px;right:-60px;width:180px;height:180px;
+    background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%);
+  }
+  .academy-left > *{position:relative;z-index:1}
+  .academy-eyebrow{
+    color:rgba(255,255,255,.92);font-weight:700;font-size:12px;
+    letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;
+  }
+  .academy-left h3{margin:0;font-size:24px;letter-spacing:-.3px;line-height:1.2}
+  .academy-icon{font-size:42px;margin-bottom:10px;line-height:1}
+  .academy-body{padding:36px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .academy-body p{margin:0;color:var(--text);font-size:15px;line-height:1.55}
+  .academy-body ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;font-size:14px}
+  .academy-body ul li{padding-left:24px;position:relative;color:var(--text)}
+  .academy-body ul li::before{
+    content:"";position:absolute;left:0;top:5px;width:14px;height:14px;
+    border-radius:50%;background:rgba(255,122,26,.18);
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF7A1A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size:10px;background-repeat:no-repeat;background-position:center;
+  }
+  .academy-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .academy-actions .btn{background:var(--accent);color:#fff}
+  .academy-actions .btn:hover{background:#E96B0E;text-decoration:none}
+  .academy-actions .academy-note{color:var(--muted);font-size:13px}
+
+  .career-submit{
+    background:linear-gradient(135deg,var(--bg-dark) 0%, #1A2C44 100%);
+    color:#fff;border-radius:18px;padding:36px;
+    display:grid;grid-template-columns:1.4fr .6fr;gap:32px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .career-submit::before{
+    content:"";position:absolute;top:-80px;left:-80px;width:240px;height:240px;
+    background:radial-gradient(circle,rgba(255,122,26,.25),transparent 70%);
+  }
+  .career-submit > *{position:relative;z-index:1}
+  .career-submit h3{margin:0 0 8px;font-size:24px}
+  .career-submit p{margin:0;color:#B6C2D5;font-size:15px}
+  .career-submit a.mail{display:inline-block;color:#fff;font-weight:600;font-size:17px;margin-top:6px}
+  .career-submit .btn{justify-content:center}
+
+  /* CTA / CONTACT */
+  .cta-band{
+    background:linear-gradient(135deg,var(--bg-dark) 0%, #1A2C44 100%);
+    color:#fff;border-radius:20px;padding:56px 48px;
+    display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .cta-band::before{
+    content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;
+    background:radial-gradient(circle,rgba(11,95,255,.4),transparent 70%);
+  }
+  .cta-band::after{
+    content:"";position:absolute;bottom:-80px;left:-80px;width:240px;height:240px;
+    background:radial-gradient(circle,rgba(255,122,26,.25),transparent 70%);
+  }
+  .cta-band > *{position:relative;z-index:1}
+  .cta-band h2{margin:0 0 12px;font-size:32px;letter-spacing:-.3px}
+  .cta-band p{margin:0;color:#B6C2D5;font-size:16px}
+  .contact-list{display:flex;flex-wrap:wrap;gap:22px;margin-top:24px;color:#B6C2D5;font-size:14.5px}
+  .contact-list a{color:#fff;font-weight:600}
+  .contact-list a:hover{color:#fff;text-decoration:underline}
+  .form{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:14px;padding:24px;
+    backdrop-filter: blur(6px);
+  }
+  .form .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .form label{font-size:13px;color:#B6C2D5}
+  .form input, .form textarea{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;color:#fff;padding:12px 14px;font-size:14px;outline:none;
+    font-family:inherit;resize:vertical;
+  }
+  .form input:focus, .form textarea:focus{border-color:var(--primary)}
+  .form .btn{width:100%;justify-content:center}
+  .form .privacy{font-size:12px;color:#B6C2D5;margin-top:8px}
+
+  /* FOOTER */
+  footer.site{
+    background:var(--bg-dark);color:#B6C2D5;
+    padding:56px 0 24px;
+  }
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+  footer .logo{color:#fff}
+  footer .logo img{filter:brightness(1.1) contrast(1.1)}
+  footer h4{color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.6px;margin:0 0 14px}
+  footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+  footer ul li, footer ul li a{color:#B6C2D5;font-size:14px}
+  footer ul li a:hover{color:#fff}
+  .foot-about p{color:#B6C2D5;font-size:14px;margin:14px 0 0}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.08);margin-top:40px;padding-top:20px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#8896AB
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px){
+    .hero-grid,.ctx-grid,.cta-band,.about-grid,.cr-intro,.career-submit,.offer-grid,.mk-companies{grid-template-columns:1fr;gap:36px}
+    .why-grid,.clients-grid{grid-template-columns:repeat(2,1fr)}
+    .formats-grid,.career-grid{grid-template-columns:1fr}
+    .academy{grid-template-columns:1fr}
+    .academy-left{padding:28px}
+    .academy-body{padding:24px}
+    .academy-body ul{grid-template-columns:1fr}
+    .mk-stages-progress{grid-template-columns:repeat(3,1fr);row-gap:24px}
+    .mk-stages-progress::before{display:none}
+    .mk-cmp-table .row{grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;font-size:11.5px}
+    .mk-stages-meta{grid-template-columns:1fr}
+    .svc-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .hero h1{font-size:36px}
+    .offer-list{grid-template-columns:1fr}
+    .offer-card{padding:28px}
+  }
+  @media (max-width: 600px){
+    .why-grid,.clients-grid,.steps{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .hero{padding:56px 0}
+    section{padding:56px 0}
+    .hero h1{font-size:30px}
+    .section-head h2{font-size:26px}
+    .cta-band{padding:32px 24px}
+    .career-submit{padding:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="container nav">
+    <a class="logo" href="#top">
+      <img src="https://datafactory.com.ua/images/logo.jpg" alt="Фабрика даних" />
+      <span>Фабрика даних</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">Про нас</a>
+      <a href="#audience">Наші клієнти</a>
+      <a href="#credit-registry">Послуга</a>
+      <a href="#career">Карʼєра</a>
+      <a href="#contact">Контакти</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#contact">Звʼязатися</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span>Регуляторна звітність для небанківських фінансових установ</span>
+      <h1>Звітність до <span class="accent">Кредитного реєстру 2.0 НБУ</span> — у нашому застосунку</h1>
+      <p class="lead">
+        Фабрика даних — українська ІТ-компанія. Понад рік щомісяця готуємо та подаємо звітність
+        до Кредитного реєстру 2.0 НБУ у власному автоматизованому застосунку — з валідацією,
+        дашбордами та повним супроводом наших аналітиків.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">
+          Звʼязатися з нами
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn-ghost" href="#credit-registry">Дізнатися деталі</a>
+      </div>
+      <div class="hero-meta">
+        <div class="item"><span class="num">1+ рік</span><span class="lbl">подаємо звітність<br/>до Кредитного реєстру НБУ</span></div>
+        <div class="item"><span class="num">In-house</span><span class="lbl">команда розробників<br/>та аналітиків БД</span></div>
+        <div class="item"><span class="num">100%</span><span class="lbl">відповідність<br/>вимогам НБУ</span></div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD MOCK -->
+    <div class="dashboard" aria-hidden="true">
+      <div class="dash-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="url">app.datafactory.com.ua/credit-registry</span>
+      </div>
+      <div class="dash-stats">
+        <div class="stat"><div class="lbl">Подано записів</div><div class="val">12 487</div><div class="delta">↑ 4,2% до періоду</div></div>
+        <div class="stat"><div class="lbl">Активні угоди</div><div class="val">3 421</div><div class="delta">↑ 1,8%</div></div>
+        <div class="stat"><div class="lbl">Помилок</div><div class="val">0</div><div class="delta">всі прийнято</div></div>
+      </div>
+      <div class="dash-chart">
+        <div class="title">Динаміка обсягу звітності, останні 6 періодів</div>
+        <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0B5FFF" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#0B5FFF" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,110 L66,90 L132,98 L200,68 L266,52 L333,40 L400,24 L400,140 L0,140 Z" fill="url(#grad)"/>
+          <path d="M0,110 L66,90 L132,98 L200,68 L266,52 L333,40 L400,24" fill="none" stroke="#0B5FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="0" cy="110" r="3.5" fill="#0B5FFF"/>
+          <circle cx="66" cy="90" r="3.5" fill="#0B5FFF"/>
+          <circle cx="132" cy="98" r="3.5" fill="#0B5FFF"/>
+          <circle cx="200" cy="68" r="3.5" fill="#0B5FFF"/>
+          <circle cx="266" cy="52" r="3.5" fill="#0B5FFF"/>
+          <circle cx="333" cy="40" r="3.5" fill="#0B5FFF"/>
+          <circle cx="400" cy="24" r="4.5" fill="#FF7A1A" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="dash-table">
+        <div class="row head"><span>Звіт</span><span>Період</span><span>Записів</span><span>Статус</span></div>
+        <div class="row"><span>D050 Активні операції</span><span>04.2026</span><span>2 102</span><span class="pill ok">прийнято</span></div>
+        <div class="row"><span>D050 Активні операції</span><span>03.2026</span><span>2 048</span><span class="pill ok">прийнято</span></div>
+        <div class="row"><span>D050 Чернетка</span><span>05.2026</span><span>2 134</span><span class="pill wait">в обробці</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Про компанію</div>
+      <h2>ТОВ «Фабрика даних» — українська ІТ-компанія</h2>
+      <p>Спеціалізуємось на професійному процесуванні даних, розробці ПЗ, прогнозній аналітиці та технічних рішеннях для бізнесу.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Ми допомагаємо клієнтам втілити у життя унікальні технологічні рішення, які сприяють цифровій трансформації, безпеці та автоматизації бізнес-процесів.</p>
+        <p>Наша команда має досвід роботи зі складними проєктами та великими обсягами даних. Ми створюємо рішення, які можна одразу застосовувати у щоденній роботі — від інтеграцій з регуляторними органами до повноцінних BI-дашбордів.</p>
+        <p>Ми in-house компанія: розробники, аналітики БД, бізнес-аналітики та інженери підтримки працюють у єдиній команді — без посередників і фрилансерів.</p>
+      </div>
+      <div class="values">
+        <div class="value">
+          <div class="value-icon">⚙</div>
+          <div><h4>Технологічність</h4><p>Постійний пошук нововведень для підвищення ефективності рішень.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon">🤝</div>
+          <div><h4>Відповідальність</h4><p>Готовність брати на себе вирішення складних завдань і доводити їх до результату.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon">🔄</div>
+          <div><h4>Гнучкість</h4><p>Швидка адаптація до інновацій та широкий спектр пропозицій для різних галузей.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon">✦</div>
+          <div><h4>Захопленість</h4><p>Професійність у роботі та відданість ідеям клієнта.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon">↔</div>
+          <div><h4>Взаємодія</h4><p>Фокусування на побудові довірливих партнерських відносин.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE / CLIENTS -->
+<section id="audience" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Наші клієнти</div>
+      <h2>Кому ми допомагаємо зі звітністю до НБУ</h2>
+      <p>З 2024 року перелік субʼєктів звітування до Кредитного реєстру 2.0 суттєво розширений. Працюємо з тими, кому ця звітність найболючіша.</p>
+    </div>
+    <div class="clients-grid">
+      <div class="client-card">
+        <div class="client-icon">💼</div>
+        <h3>Фінансові компанії</h3>
+        <p>Кредитування, факторинг, фінансовий лізинг — будь-яка діяльність з активними операціями, що підлягає звітності D050.</p>
+      </div>
+      <div class="client-card">
+        <div class="client-icon">🚗</div>
+        <h3>Лізингові компанії</h3>
+        <p>Подача звіту про активні операції за лізинговими договорами з повним контролем статусів і помилок.</p>
+      </div>
+      <div class="client-card">
+        <div class="client-icon">💰</div>
+        <h3>Ломбарди</h3>
+        <p>Підготовка та подання звітності з урахуванням специфіки заставних операцій і коротких кредитів.</p>
+      </div>
+      <div class="client-card">
+        <div class="client-icon">📋</div>
+        <h3>Колекторські та факторингові</h3>
+        <p>Звітування за переуступленими правами вимоги, реструктуризацією та списанням заборгованості.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- CREDIT REGISTRY 2.0 — flagship  -->
+<!-- ============================== -->
+
+<!-- CR Intro band -->
+<section id="credit-registry">
+  <div class="container">
+    <div class="cr-intro">
+      <div>
+        <div class="eyebrow">Наша послуга</div>
+        <h2>Кредитний реєстр 2.0 НБУ — повний цикл звітності</h2>
+        <p>Експертний супровід та власний автоматизований застосунок для подачі звіту D050 про активні операції до Кредитного реєстру 2.0. Збираємо, валідуємо, формуємо та подаємо звіт за вас — у строк і у повній відповідності до технічних вимог НБУ.</p>
+        <div class="cr-intro-actions">
+          <a class="btn btn-light" href="#contact">Звʼязатися з нами</a>
+          <a class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.25)" href="#cr-formats">Формати співпраці</a>
+        </div>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px">
+          <div style="color:#7EA0FF;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase">Досвід</div>
+          <div style="color:#fff;font-size:24px;font-weight:700;margin-top:4px">1+ рік у проді</div>
+          <div style="color:#B6C2D5;font-size:13px">подаємо звітність фінкомпаніям щомісяця</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px">
+          <div style="color:#7EA0FF;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase">Перевага</div>
+          <div style="color:#fff;font-size:24px;font-weight:700;margin-top:4px">Дашборди + BI</div>
+          <div style="color:#B6C2D5;font-size:13px">аналітика портфеля у комплекті, не лише регуляторика</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section id="cr-context">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Контекст</div>
+      <h2>Що саме потрібно подавати</h2>
+      <p>З 2024 року перелік субʼєктів подачі суттєво розширений. Звітність — щомісячна, у форматі XML за новою таксономією, з обовʼязковою валідацією та накладанням КЕП.</p>
+    </div>
+    <div class="ctx-grid">
+      <div class="ctx-card">
+        <h3 style="margin:0 0 8px;font-size:20px">Хто має подавати звіт D050</h3>
+        <p style="color:var(--muted);margin:0">Звітність про активні операції до НБУ зобовʼязані подавати:</p>
+        <div class="ctx-list">
+          <div class="li"><span class="ico">✓</span><div><b>Банки</b> — за всіма боржниками з сукупним боргом від 50 тис. грн.</div></div>
+          <div class="li"><span class="ico">✓</span><div><b>Фінансові компанії</b> та <b>ломбарди</b>, що надають кредити, факторинг, фінлізинг.</div></div>
+          <div class="li"><span class="ico">✓</span><div><b>Лізингові компанії</b>, кредитні спілки, страхові з кредитними операціями.</div></div>
+          <div class="li"><span class="ico">✓</span><div><b>Колекторські компанії</b>, що набули право вимоги.</div></div>
+        </div>
+        <div class="ctx-warn">
+          <b>Важливо.</b> За несвоєчасну або неякісну подачу НБУ застосовує заходи впливу, а старий формат подачі через таблиці поступово виводиться з обігу.
+        </div>
+      </div>
+      <div class="ctx-card">
+        <h3 style="margin:0 0 14px;font-size:20px">Що входить у звіт</h3>
+        <div class="ctx-list">
+          <div class="li"><span class="ico">1</span><div>Дані про <b>боржника</b> (фізична/юридична особа, ФОП, нерезидент).</div></div>
+          <div class="li"><span class="ico">2</span><div>Дані про <b>кредитну операцію</b>: тип продукту, валюта, ставка, графік.</div></div>
+          <div class="li"><span class="ico">3</span><div>Дані про <b>забезпечення</b>: поручителі, застава, іпотека, страхування.</div></div>
+          <div class="li"><span class="ico">4</span><div><b>Класифікація</b> активу, прострочка, резерви, переуступка.</div></div>
+          <div class="li"><span class="ico">5</span><div><b>Зміни</b>: реструктуризація, погашення, списання, дефолт.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="cr-why" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Чому Фабрика даних</div>
+      <h2>Експертиза + власне ПЗ + жива команда</h2>
+      <p>Ми не перепродаємо чужий продукт. Це наш застосунок, наша команда розробників та аналітиків БД, які знають вимоги НБУ зсередини.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⏱</div>
+        <h3>1+ рік у проді</h3>
+        <p>Подаємо звітність для діючих фінансових компаній щомісяця. Знаємо реальні крайні випадки, а не лише документацію НБУ.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛠</div>
+        <h3>Власна команда</h3>
+        <p>Розробники, аналітики БД, бізнес-аналітики, технічні саппорт-інженери — усі in-house, без посередників та фрилансерів.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h3>Дашборди та аналітика</h3>
+        <p>Окрім подачі — повний візуальний контроль: динаміка портфеля, помилки, статуси, прострочка, концентрація ризику.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔄</div>
+        <h3>Гнучкість під вашу систему</h3>
+        <p>Передача даних через API або Excel — обираєте, як зручніше команді. Адаптуємось під формат вивантажень та внутрішні правила.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section id="cr-formats">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Формати співпраці</div>
+      <h2>Три способи, як ми можемо допомогти</h2>
+      <p>Вам не обовʼязково одразу переходити на наш застосунок. Можемо стати вашим консультантом, налаштувати рішення, яке ви вже використовуєте, або повністю взяти звітність на себе у нашому продукті.</p>
+    </div>
+    <div class="formats-grid">
+
+      <div class="format">
+        <div class="format-icon" aria-hidden="true">💬</div>
+        <h3>Консультації та експертиза</h3>
+        <p class="lead">Експертна підтримка з питань Кредитного реєстру 2.0 без зміни вашої існуючої інфраструктури.</p>
+        <ul>
+          <li>Аудит готовності до подачі звіту D050</li>
+          <li>Розбір складних регуляторних кейсів (переуступка, реструктуризація, дефолти)</li>
+          <li>Допомога з підготовкою та якістю даних</li>
+          <li>Навчання вашої команди вимогам НБУ</li>
+          <li>Супровід при перевірках і запитах регулятора</li>
+        </ul>
+        <div class="format-foot">Підходить, якщо у вас уже є ПЗ і власна команда</div>
+      </div>
+
+      <div class="format">
+        <div class="format-icon" aria-hidden="true">🔧</div>
+        <h3>Налаштування існуючого рішення</h3>
+        <p class="lead">У вас уже є інструмент для звітності — NBU-Connect, BAS, M.E.Doc, кастомне ПЗ? Налаштуємо й інтегруємо його під ваші процеси.</p>
+        <ul>
+          <li>Інтеграція ваших джерел даних з наявним ПЗ</li>
+          <li>Маппінг довідників, налаштування правил валідації</li>
+          <li>Автоматизація рутинних операцій підготовки звіту</li>
+          <li>Допомога з міграцією на формат Кредитного реєстру 2.0</li>
+          <li>Незалежна експертиза — без привʼязки до конкретного вендора</li>
+        </ul>
+        <div class="format-foot">Підходить, якщо ви хочете залишити поточний інструмент</div>
+      </div>
+
+      <div class="format featured">
+        <div class="format-icon" aria-hidden="true">⚡</div>
+        <h3>Повний цикл у нашому застосунку</h3>
+        <p class="lead">Найповніший варіант: наш автоматизований застосунок плюс експертний супровід та аналітика портфеля.</p>
+        <ul>
+          <li>Власний застосунок із валідацією за правилами НБУ</li>
+          <li>Автоматизована подача та контроль статусів</li>
+          <li>BI-дашборди кредитного портфеля «з коробки»</li>
+          <li>Виділений аналітик та менеджер супроводу</li>
+          <li>Адаптація під зміни регуляторики — у тарифі</li>
+        </ul>
+        <div class="format-foot">Найбільший ефект, мінімум ручної роботи</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT DETAILS -->
+<section id="cr-product" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Деталі повного циклу</div>
+      <h2>Що саме входить у налаштування нашого рішення</h2>
+      <p>Розгорнутий опис шести напрямів роботи у форматі «Повний цикл у нашому застосунку». При інших форматах співпраці склад робіт адаптується під вашу ситуацію.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc">
+        <h3><span class="num">01</span>Підключення та налаштування</h3>
+        <p>Аудит ваших джерел даних, маппінг полів під довідники НБУ, налаштування правил класифікації та звірок.</p>
+        <ul>
+          <li>Розгортання застосунку (cloud/on-premise)</li>
+          <li>Підключення джерел: через API або Excel</li>
+          <li>Маппінг довідників: продукти, валюти, типи забезпечення</li>
+          <li>Інструктаж відповідальних осіб</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <h3><span class="num">02</span>Автоматизоване формування звіту</h3>
+        <p>Застосунок збирає дані з джерел, нормалізує, проходить вбудовану валідацію за правилами НБУ та формує XML-пакет.</p>
+        <ul>
+          <li>500+ вбудованих перевірок (синтаксис, бізнес-правила НБУ)</li>
+          <li>Підсвічування помилок з посиланням на конкретний запис</li>
+          <li>Масове редагування за фільтрами</li>
+          <li>Журнал змін та історія версій звіту</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <h3><span class="num">03</span>Подача та контроль статусів</h3>
+        <p>Накладаєте КЕП — застосунок підписує та передає звіт до НБУ, відстежує статус кожного запису та повідомляє про результат.</p>
+        <ul>
+          <li>Інтеграція з API НБУ для подачі та квитанцій</li>
+          <li>Сповіщення про статуси у застосунку</li>
+          <li>Автоматичні повторні спроби при технічних збоях</li>
+          <li>Архів усіх поданих звітів та квитанцій</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <h3><span class="num">04</span>Дашборди та BI-аналітика</h3>
+        <p>Окрім регуляторної функції — управлінська цінність: бачте свій кредитний портфель у реальному часі, не у Excel.</p>
+        <ul>
+          <li>Структура портфеля: за продуктами, валютами, регіонами</li>
+          <li>Динаміка виданих, погашених, списаних</li>
+          <li>Прострочка, концентрація на одного боржника</li>
+          <li>Експорт у Excel</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <h3><span class="num">05</span>Експертний супровід</h3>
+        <p>Не залишаємо віч-на-віч з реєстром. Наш аналітик допомагає з кожним кейсом та змінами регуляторики.</p>
+        <ul>
+          <li>Виділений менеджер та технічний інженер</li>
+          <li>Допомога з нестандартними операціями (переуступка, реструктуризація)</li>
+          <li>Адаптація застосунку під зміни постанов НБУ</li>
+          <li>SLA з гарантованим часом реакції</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <h3><span class="num">06</span>Безпека та відповідність</h3>
+        <p>Ваші дані залишаються у вас. Працюємо у вашому контурі або у захищеному сегменті cloud з шифруванням.</p>
+        <ul>
+          <li>On-premise або private cloud за вибором</li>
+          <li>Шифрування у спокої та при передачі</li>
+          <li>Розмежування доступів за ролями</li>
+          <li>Журнал аудиту дій користувачів</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP MOCKUPS (subsection of service) -->
+<section id="app">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Усередині застосунку</div>
+      <h2>Як виглядає робота у нашому продукті</h2>
+      <p>Не оголошуємо «BI-аналітику» абстрактно. Нижче — приклади ключових екранів застосунку, який зараз використовують діючі клієнти. Усі дані на ілюстраціях — демонстраційні.</p>
+    </div>
+
+    <div class="app-grid">
+
+      <!-- MOCKUP 1: Multi-company selector -->
+      <div class="app-mockup">
+        <div class="app-mockup-header">
+          <div>
+            <h3>Кредитний реєстр</h3>
+            <div class="sub">Система управління кредитною звітністю та моніторингу</div>
+          </div>
+          <span class="tag">v 2601.29.3</span>
+        </div>
+        <div class="app-mockup-body">
+          <div class="mk-companies">
+            <div class="mk-companies-left">
+              <div class="ico">🏢</div>
+              <h4>Оберіть компанію</h4>
+              <p>Виберіть компанію для роботи з кредитним реєстром. Після вибору ви зможете подавати звітність, перевіряти боржників та переглядати дашборди.</p>
+              <span class="pill-soft">5 компаній</span>
+            </div>
+            <div class="mk-companies-list">
+              <div class="label">Доступні компанії (демо)</div>
+              <div class="mk-company">
+                <div class="mk-avatar av-1">А</div>
+                <div>
+                  <div class="mk-company-name">ТОВ «Альфа Кредит»</div>
+                  <div class="mk-company-code">00 000 001</div>
+                </div>
+                <span class="chev">›</span>
+              </div>
+              <div class="mk-company">
+                <div class="mk-avatar av-2">Б</div>
+                <div>
+                  <div class="mk-company-name">ТОВ «Бета Факторинг»</div>
+                  <div class="mk-company-code">00 000 002</div>
+                </div>
+                <span class="chev">›</span>
+              </div>
+              <div class="mk-company">
+                <div class="mk-avatar av-3">Γ</div>
+                <div>
+                  <div class="mk-company-name">ТОВ «Гамма Лізинг»</div>
+                  <div class="mk-company-code">00 000 003</div>
+                </div>
+                <span class="chev">›</span>
+              </div>
+              <div class="mk-company">
+                <div class="mk-avatar av-4">Δ</div>
+                <div>
+                  <div class="mk-company-name">ТОВ «Дельта Фінанс»</div>
+                  <div class="mk-company-code">00 000 004</div>
+                </div>
+                <span class="chev">›</span>
+              </div>
+              <div class="mk-company">
+                <div class="mk-avatar av-5">Ε</div>
+                <div>
+                  <div class="mk-company-name">ЛОМБАРД «Епсилон»</div>
+                  <div class="mk-company-code">00 000 005</div>
+                </div>
+                <span class="chev">›</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-mockup-caption">
+          <b>Мультикомпанійність.</b> Один застосунок обслуговує одночасно кілька юридичних осіб — зручно для холдингів, аутсорсу бухобліку та профільних консультантів. Звітність і дашборди — окремо по кожній компанії з єдиним адміністративним інтерфейсом.
+        </div>
+      </div>
+
+      <!-- MOCKUP 2: 6-stage submission process -->
+      <div class="app-mockup">
+        <div class="app-mockup-header">
+          <div>
+            <h3>Подача звітності: Національний банк України (НБУ)</h3>
+            <div class="sub">Покроковий процес із контролем часу та статусу на кожному етапі</div>
+          </div>
+          <span class="tag">ID кампанії 43072</span>
+        </div>
+        <div class="app-mockup-body">
+          <div class="mk-stages">
+            <div class="mk-stages-progress">
+              <div class="mk-stage done"><div class="circ">0</div><div class="name">Попередні дані</div></div>
+              <div class="mk-stage current"><div class="circ">1</div><div class="name">Підготовка даних</div></div>
+              <div class="mk-stage"><div class="circ">2</div><div class="name">Формування пакета звіту</div></div>
+              <div class="mk-stage"><div class="circ">3</div><div class="name">Перевірка буфера</div></div>
+              <div class="mk-stage"><div class="circ">4</div><div class="name">Формування пакета</div></div>
+              <div class="mk-stage"><div class="circ">5</div><div class="name">Надсилання звітності</div></div>
+            </div>
+
+            <div class="mk-stages-current">
+              <h4>Етап 1: Підготовка даних <span class="badge-running">У РОБОТІ</span></h4>
+              <p class="desc">Збираються та валідуються дані з джерел клієнта, формується чернетка звіту, виявляються та підсвічуються потенційні помилки.</p>
+              <div class="mk-stages-bar"><div></div></div>
+              <div class="mk-stages-bar-row"><span>Перевірено записів: 2 134 / 2 134</span><span>100%</span></div>
+              <div class="mk-stages-meta">
+                <div class="item"><div class="lbl">Користувач</div><div class="val">Аналітик Фабрики даних</div></div>
+                <div class="item"><div class="lbl">Час початку</div><div class="val">11:32:55</div></div>
+                <div class="item"><div class="lbl">Тривалість</div><div class="val">00:02:13</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-mockup-caption">
+          <b>Шість етапів подачі.</b> На кожному кроці зафіксовано виконавця, час старту і тривалість. Якщо щось пішло не так — застосунок зупиняє конвеєр і дає точку повернення без перепроходження попередніх етапів.
+        </div>
+      </div>
+
+      <!-- MOCKUP 3: Period comparison table -->
+      <div class="app-mockup">
+        <div class="app-mockup-header">
+          <div>
+            <h3>Загальний дашборд</h3>
+            <div class="sub">Порівняння показників Кредитного реєстру за період</div>
+          </div>
+          <span class="tag">Демо-дані · Q1–Q2 2026</span>
+        </div>
+        <div class="app-mockup-body">
+          <div class="mk-cmp-toolbar">
+            <span class="mk-pill">📊 Таблиця</span>
+            <span class="mk-pill muted">📈 Графіки</span>
+            <span class="mk-pill muted">ℹ Інфо</span>
+            <span class="mk-pill muted">⤢ Розгорнути</span>
+          </div>
+          <div class="mk-cmp-table">
+            <div class="row head">
+              <span>Метрика</span>
+              <span class="num">Період 1</span>
+              <span class="num">Період 2</span>
+              <span class="num">Різниця</span>
+              <span class="num">Період 3</span>
+            </div>
+
+            <div class="row cat"><span>● КР — Кредитний реєстр НБУ</span><span></span><span></span><span></span><span></span></div>
+            <div class="row highlighted"><span>Підлягає поданню в КР</span><span class="num">850 000</span><span class="num">855 000</span><span class="num delta-pos">↑ 5 000</span><span class="num">860 000</span></div>
+            <div class="row"><span>Кредити фізичних осіб, видані</span><span class="num">10 000</span><span class="num">11 000</span><span class="num delta-pos">↑ 1 000</span><span class="num">11 500</span></div>
+            <div class="row"><span>Кредити фізичних осіб, куплені</span><span class="num">800 000</span><span class="num">805 000</span><span class="num delta-pos">↑ 5 000</span><span class="num">810 000</span></div>
+            <div class="row"><span>Кредити юридичних осіб, видані</span><span class="num">40</span><span class="num">45</span><span class="num delta-pos">↑ 5</span><span class="num">50</span></div>
+            <div class="row"><span>Кредити юридичних осіб, куплені</span><span class="num">220</span><span class="num">225</span><span class="num delta-pos">↑ 5</span><span class="num">230</span></div>
+            <div class="row"><span>Прострочка ≥ 30 днів</span><span class="num">45 000</span><span class="num">42 000</span><span class="num delta-pos">↓ 3 000</span><span class="num">40 000</span></div>
+            <div class="row"><span>Загальний обсяг портфеля, грн</span><span class="num">1,2 млрд</span><span class="num">1,25 млрд</span><span class="num delta-pos">↑ 50 млн</span><span class="num">1,3 млрд</span></div>
+          </div>
+          <p style="margin:12px 0 0;font-size:12px;color:var(--muted);font-style:italic">Цифри у таблиці — приклад для ілюстрації функціоналу. Реальні дані клієнтів конфіденційні.</p>
+        </div>
+        <div class="app-mockup-caption">
+          <b>Порівняння періодів з дельтами.</b> Зеленим — позитивні зміни (приріст портфеля або скорочення прострочки), червоним — негативні. Зверху перемикач «таблиця ↔ графіки»: ті самі метрики доступні у вигляді лінійних або стовпчикових діаграм для презентацій. Підкреслені значення клікабельні — переходять до деталізації по конкретному запису.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="cr-process" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Як ми працюємо</div>
+      <h2>Від першого дзвінка до першого звіту</h2>
+      <p>Чіткий процес впровадження, який ми відпрацювали на діючих клієнтах. Строки погоджуємо індивідуально — залежно від обсягу даних та готовності джерел.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>Аудит і скоуп</h4>
+        <p>Аналізуємо ваші процеси, джерела даних, поточні проблеми зі звітністю та визначаємо обсяг робіт.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>Налаштування</h4>
+        <p>Розгортаємо застосунок, маппимо довідники, інтегруємо ваші джерела даних та довідники НБУ.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>Тестова подача</h4>
+        <p>Формуємо тестовий звіт за минулий період, проганяємо валідацію, фіксуємо та виправляємо помилки в даних.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h4>Реальна подача та супровід</h4>
+        <p>Подаємо звіт у бойовий контур НБУ. Далі — щомісячний регламент під супроводом нашого аналітика.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section id="cr-offer">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Наша пропозиція</div>
+      <h2>Один сервіс — повний цикл регуляторної звітності</h2>
+      <p>Без розрізнених тарифів і прихованих опцій. Ви отримуєте все необхідне, щоб закрити подачу звітності та одразу мати аналітику кредитного портфеля.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-grid">
+        <div class="offer-col">
+          <h3>Що входить у послугу</h3>
+          <ul class="offer-list">
+            <li>Доступ до автоматизованого застосунку</li>
+            <li>Підключення джерел даних: API або Excel</li>
+            <li>500+ вбудованих перевірок за правилами НБУ</li>
+            <li>Підготовка та подача звіту D050 у строк</li>
+            <li>Контроль статусів та квитанцій від НБУ</li>
+            <li>Дашборди та BI-аналітика портфеля</li>
+            <li>Виділений аналітик і менеджер супроводу</li>
+            <li>Адаптація під зміни постанов НБУ</li>
+            <li>Безпека: шифрування, ролі, журнал аудиту</li>
+            <li>Підтримка з реальним SLA</li>
+          </ul>
+        </div>
+        <div class="offer-col offer-side">
+          <div class="offer-side-inner">
+            <div class="offer-eyebrow">Кошторис</div>
+            <p class="offer-side-text">Вартість залежить від обсягу даних, кількості джерел та формату розгортання (cloud або on-premise). Розраховуємо індивідуально після короткого аудиту — без зобовʼязань з вашого боку.</p>
+            <a class="btn btn-primary" href="#contact" style="width:100%;justify-content:center">Отримати кошторис</a>
+            <p class="offer-side-note">Менеджер звʼяжеться в межах робочого дня.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="cr-faq" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Відповідаємо</div>
+      <h2>Часті запитання</h2>
+      <p>Якщо вашого питання немає — напишіть, ми відповімо в межах робочого дня.</p>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Чи підходить рішення для невеликої фінкомпанії або ломбарду?</summary>
+        <p>Так. Формат «Консультації та експертиза» закриває потреби невеликих команд. За потреби можна перейти на повний цикл у нашому застосунку — без міграції даних.</p>
+      </details>
+      <details>
+        <summary>Як швидко ви запустите нас у бойовий режим?</summary>
+        <p>Орієнтовний план: спочатку аудит та маппінг даних, потім тестові подачі за минулий період, далі — реальна подача за поточний звітний період. Конкретні строки погоджуємо індивідуально на етапі аудиту: вони залежать від якості ваших даних, кількості джерел та внутрішніх погоджень.</p>
+      </details>
+      <details>
+        <summary>Де зберігаються наші дані?</summary>
+        <p>За замовчуванням — у захищеному cloud-сегменті в Україні з шифруванням. На вимогу — on-premise у вашому контурі, де ми не маємо до даних доступу взагалі.</p>
+      </details>
+      <details>
+        <summary>Що якщо НБУ змінить вимоги до звіту?</summary>
+        <p>Адаптація під нові постанови входить у послугу повного циклу. Це частина нашої роботи — слідкувати за змінами та оновлювати застосунок до набрання чинності нових правил.</p>
+      </details>
+      <details>
+        <summary>Як ми передаємо дані у ваш застосунок?</summary>
+        <p>Через API (REST) або через файли Excel/CSV — як зручніше вашій команді. На етапі аудиту визначаємо найзручніший формат обміну.</p>
+      </details>
+      <details>
+        <summary>Чи можна обслуговувати декілька юридичних осіб з одного застосунку?</summary>
+        <p>Так — застосунок мультикомпанійний. Кожна компанія має свої дані, ролі та звітність у межах єдиного адміністративного інтерфейсу. Зручно для холдингів, аутсорсу бухобліку та профільних консультантів.</p>
+      </details>
+      <details>
+        <summary>Хто несе відповідальність за зміст звіту перед НБУ?</summary>
+        <p>Юридично — завжди фінансова установа, яка підписує звіт КЕП. Ми технічно гарантуємо коректність формування, валідацію, подачу та відстеження статусів. SLA та межі відповідальності фіксуються у договорі.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Карʼєра</div>
+      <h2>Приєднуйтесь до команди Фабрики даних</h2>
+      <p>Ми in-house ІТ-компанія. Працюємо над цікавими дата-проєктами для фінансових та юридичних компаній. Шукаємо людей, які люблять докопуватись до сенсу й доводити справу до результату.</p>
+    </div>
+
+    <div class="career-grid">
+      <div class="vacancy">
+        <span class="vacancy-tag">Аналітика</span>
+        <h3>Data Analyst</h3>
+        <p>Працюватимете з реальними фінансовими даними клієнтів: побудова дашбордів, аналіз кредитних портфелів, підготовка регуляторної звітності.</p>
+        <ul>
+          <li>SQL (PostgreSQL / MS SQL)</li>
+          <li>Power BI / Tableau або аналог</li>
+          <li>Базовий Python для обробки даних</li>
+          <li>Англійська — Intermediate+</li>
+        </ul>
+      </div>
+
+      <div class="vacancy">
+        <span class="vacancy-tag junior">Junior</span>
+        <h3>Junior Python Developer</h3>
+        <p>Стартова позиція в команді розробників. Бекенд для фінтех-застосунків, інтеграції з НБУ та внутрішніми системами клієнтів.</p>
+        <ul>
+          <li>Python 3.10+, базове знання FastAPI / Django</li>
+          <li>SQL, основи роботи з реляційними БД</li>
+          <li>Git, базовий Linux</li>
+          <li>Готовність вчитися та брати відповідальність</li>
+        </ul>
+      </div>
+
+      <div class="vacancy">
+        <span class="vacancy-tag mid">Middle</span>
+        <h3>Middle Python Developer</h3>
+        <p>Самостійні задачі з розробки бекенду та інтеграцій. Архітектурні рішення під вашою відповідальністю, ревʼю коду молодших колег.</p>
+        <ul>
+          <li>3+ роки на Python (FastAPI / Django)</li>
+          <li>Глибокий SQL, проєктування БД</li>
+          <li>Docker, CI/CD, тестування</li>
+          <li>Досвід з REST API, асинхронним кодом</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ACADEMY for trainees -->
+    <div class="academy">
+      <div class="academy-left">
+        <div class="academy-icon">🎓</div>
+        <div class="academy-eyebrow">Академія</div>
+        <h3>Готуємо власних Python-розробників із нуля</h3>
+      </div>
+      <div class="academy-body">
+        <p>Регулярно проводимо набір на нашу академію для трейні Python-розробників. Це інтенсивна практична програма під супроводом наших інженерів — на реальних задачах із фінансових проєктів. Кращі випускники отримують пропозицію приєднатися до команди Фабрики даних.</p>
+        <ul>
+          <li>Практика на справжніх задачах із проду</li>
+          <li>Менторство від наших Middle/Senior розробників</li>
+          <li>Без сертифікатів-для-стіни — реальні навички</li>
+          <li>Працевлаштування для найкращих випускників</li>
+        </ul>
+        <div class="academy-actions">
+          <a class="btn" href="mailto:ASkliarenko@at.kiev.ua?subject=Заявка%20на%20академію%20%E2%80%94%20Фабрика%20даних">
+            Подати заявку на академію
+          </a>
+          <span class="academy-note">або напишіть на <a href="mailto:ASkliarenko@at.kiev.ua">ASkliarenko@at.kiev.ua</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="career-submit">
+      <div>
+        <h3>Не знайшли свою вакансію?</h3>
+        <p>Надсилайте резюме — розглянемо вас на майбутні позиції. Якщо ваші компетенції цінні для нашої роботи з даними, ми звʼяжемось.</p>
+        <a class="mail" href="mailto:ASkliarenko@at.kiev.ua?subject=CV%20%E2%80%94%20Фабрика%20даних">ASkliarenko@at.kiev.ua</a>
+      </div>
+      <div>
+        <a class="btn btn-light" href="mailto:ASkliarenko@at.kiev.ua?subject=CV%20%E2%80%94%20Фабрика%20даних" style="width:100%;display:block;text-align:center">
+          Надіслати резюме →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section id="contact">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <div class="eyebrow" style="color:#7EA0FF">Контакти</div>
+        <h2>Розкажіть про вашу задачу — підкажемо рішення</h2>
+        <p>Залиште заявку — наш менеджер звʼяжеться в межах робочого дня, обговоримо ваші потреби та домовимось про демо.</p>
+        <div class="contact-list">
+          <span>✉ <a href="mailto:EV@datafactory.com.ua">EV@datafactory.com.ua</a></span>
+          <span>📞 <a href="tel:+380639753192">+38 (063) 975-31-92</a></span>
+          <span>📍 м. Київ, вул. Воробйова Г.Г., 10</span>
+        </div>
+      </div>
+      <form class="form" onsubmit="event.preventDefault();alert('Дякуємо! Ми звʼяжемося з вами найближчим часом.');">
+        <div class="field">
+          <label for="company">Компанія</label>
+          <input id="company" name="company" type="text" placeholder="Назва компанії" />
+        </div>
+        <div class="field">
+          <label for="name">Контактна особа *</label>
+          <input id="name" name="name" type="text" placeholder="Імʼя та посада" required />
+        </div>
+        <div class="field">
+          <label for="phone">Телефон *</label>
+          <input id="phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" required />
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="name@company.com" />
+        </div>
+        <div class="field">
+          <label for="message">Коротко про задачу</label>
+          <textarea id="message" name="message" rows="3" placeholder="Наприклад: розглядаємо рішення для подачі звіту D050"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Залишити заявку</button>
+        <div class="privacy">Натискаючи кнопку, ви погоджуєтесь з <a href="#" style="color:#fff">політикою конфіденційності</a>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a class="logo" href="#top">
+          <img src="https://datafactory.com.ua/images/logo.jpg" alt="Фабрика даних" />
+          <span>Фабрика даних</span>
+        </a>
+        <p>ТОВ «Фабрика даних» — українська ІТ-компанія. Створюємо програмні рішення для фінансових, юридичних, рітейл-компаній та контакт-центрів.</p>
+      </div>
+      <div>
+        <h4>Послуга</h4>
+        <ul>
+          <li><a href="#credit-registry">Кредитний реєстр 2.0 НБУ</a></li>
+          <li><a href="#cr-formats">Формати співпраці</a></li>
+          <li><a href="#app">Інтерфейс застосунку</a></li>
+          <li><a href="#cr-offer">Що входить у послугу</a></li>
+          <li><a href="#cr-faq">Часті запитання</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Компанія</h4>
+        <ul>
+          <li><a href="#about">Про нас</a></li>
+          <li><a href="#clients">Клієнти</a></li>
+          <li><a href="#career">Карʼєра</a></li>
+          <li><a href="#contact">Контакти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакти</h4>
+        <ul>
+          <li>м. Київ, вул. Воробйова Г.Г., 10</li>
+          <li><a href="mailto:EV@datafactory.com.ua">EV@datafactory.com.ua</a></li>
+          <li><a href="tel:+380639753192">+38 (063) 975-31-92</a></li>
+          <li>Для кандидатів:<br/><a href="mailto:ASkliarenko@at.kiev.ua">ASkliarenko@at.kiev.ua</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Фабрика даних. Усі права захищені.</span>
+      <span><a href="/" style="color:#8896AB">Політика конфіденційності</a> · <a href="/" style="color:#8896AB">Умови використання</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
