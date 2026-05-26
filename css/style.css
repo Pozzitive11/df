@@ -1642,7 +1642,7 @@ details p {
   display: none;
   padding: 16px 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   font-size: 14.5px;
   line-height: 1.5;
   animation: fadeIn 0.3s ease;
@@ -1668,6 +1668,9 @@ details p {
 .form.is-success .btn,
 .form.is-success .privacy {
   display: none;
+}
+.form.is-success .form-alert {
+  margin-top: 0;
 }
 
 /* FOOTER */
