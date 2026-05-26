@@ -852,24 +852,26 @@
           <span>📍 м. Київ, вул. Воробйова Г.Г., 10</span>
         </div>
       </div>
-      <form id="leadForm" class="form" action="https://formsubmit.co/ajax/EV@datafactory.com.ua" method="POST">
-            <input type="hidden" name="_subject" value="Нова заявка з сайту Datafactory">
-            <input type="hidden" name="_template" value="table">
+      <form id="leadForm" class="form">
+        <div id="formAlert" class="form-alert"></div>
         <div class="field">
           <label for="company">Компанія</label>
           <input id="company" name="company" type="text" autocomplete="organization" placeholder="Назва компанії" />
         </div>
         <div class="field">
           <label for="name">Контактна особа *</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="Імʼя та посада" required />
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Імʼя та посада" required minlength="2" />
+          <div class="invalid-feedback">Будь ласка, вкажіть ваше імʼя та посаду</div>
         </div>
         <div class="field">
           <label for="phone">Телефон *</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+38 (0__) ___-__-__" required />
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+38 (0__) ___-__-__" required minlength="10" maxlength="20" />
+          <div class="invalid-feedback">Введіть коректний номер телефону</div>
         </div>
         <div class="field">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" />
+          <label for="email">E-mail *</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
+          <div class="invalid-feedback">Введіть дійсну email адресу</div>
         </div>
         <div class="field">
           <label for="message">Коротко про задачу</label>

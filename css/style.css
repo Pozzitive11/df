@@ -1613,6 +1613,22 @@ details p {
 .form textarea:focus {
   border-color: var(--primary);
 }
+.form.was-validated input:invalid,
+.form.was-validated textarea:invalid {
+  border-color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.05);
+}
+.invalid-feedback {
+  display: none;
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.form.was-validated input:invalid ~ .invalid-feedback,
+.form.was-validated textarea:invalid ~ .invalid-feedback {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
 .form .btn {
   width: 100%;
   justify-content: center;
@@ -1621,6 +1637,37 @@ details p {
   font-size: 12px;
   color: #b6c2d5;
   margin-top: 8px;
+}
+.form-alert {
+  display: none;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease;
+}
+.form-alert.success {
+  display: block;
+  background-color: rgba(26, 163, 122, 0.1);
+  border: 1px solid rgba(26, 163, 122, 0.25);
+  color: #1aa37a;
+}
+.form-alert.success strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+.form-alert.error {
+  display: block;
+  background-color: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.25);
+  color: #ff6b6b;
+}
+.form.is-success .field,
+.form.is-success .btn,
+.form.is-success .privacy {
+  display: none;
 }
 
 /* FOOTER */

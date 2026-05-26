@@ -45,9 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(reveal);
   });
 
-  // 3. AJAX Submission for Lead Form via FormSubmit.co
+  // 3. AJAX Submission for Lead Form via internal API
   const leadForm = document.getElementById("leadForm");
   if (leadForm) {
+    const submitBtn = leadForm.querySelector("button[type='submit']");
+    
+    // Show validation styles only after first submit attempt
+    submitBtn.addEventListener("click", () => {
+      leadForm.classList.add("was-validated");
+    });
+
     leadForm.addEventListener("submit", (e) => {
       e.preventDefault();
       
@@ -57,32 +64,43 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.innerText = "Надсилання...";
       
       const formData = new FormData(leadForm);
-      const data = {};
-      formData.forEach((value, key) => data[key] = value);
+
+      // Map form fields to API schema
+      const payload = {
+        created_at: new Date().toISOString(),
+        company_name: formData.get("company") || "",
+        contact_person: formData.get("name") || "",
+        phone_number: formData.get("phone") || "",
+        email: formData.get("email") || "",
+        description: formData.get("message") || ""
+      };
       
-      fetch(leadForm.action, {
+      const formAlert = document.getElementById("formAlert");
+      formAlert.className = "form-alert"; // reset
+
+      fetch("http://10.11.32.60:8778/c-register/api/v0/filling-form", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       })
       .then(response => {
         if (response.ok) {
-          leadForm.innerHTML = `
-            <div style="text-align: center; padding: 40px 20px; color: #fff;">
-              <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
-              <h3 style="margin-bottom: 8px; font-size: 22px;">Дякуємо!</h3>
-              <p style="color: #b6c2d5; font-size: 15px;">Ваша заявка успішно надіслана. Наш менеджер звʼяжеться з вами найближчим часом.</p>
-            </div>
-          `;
+          formAlert.className = "form-alert success";
+          formAlert.innerHTML = `<strong>✓ Дякуємо!</strong> Ваша заявка успішно надіслана. Наш менеджер звʼяжеться з вами найближчим часом.`;
+          leadForm.classList.add("is-success");
         } else {
-          throw new Error('Помилка відправки');
+          return response.json().catch(() => null).then(body => {
+            throw new Error(body?.detail || body?.message || 'Помилка відправки');
+          });
         }
       })
       .catch(error => {
-        alert("Ой! Сталася помилка при надсиланні. Спробуйте ще раз або зв'яжіться з нами по телефону.");
+        console.error("Form submission error:", error);
+        formAlert.className = "form-alert error";
+        formAlert.innerHTML = `Ой! Сталася помилка при надсиланні. Спробуйте ще раз або зв'яжіться з нами по телефону.`;
         submitBtn.disabled = false;
         submitBtn.innerText = originalText;
       });
