@@ -1547,8 +1547,8 @@ details p {
 .contact-card {
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 28px;
+  border-radius: 18px;
+  padding: 44px 36px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1556,38 +1556,38 @@ details p {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .contact-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow);
 }
 .contact-card .contact-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
   background: linear-gradient(135deg, rgba(11, 95, 255, 0.12), rgba(255, 122, 26, 0.12));
   display: grid;
   place-items: center;
   color: var(--primary);
-  font-size: 26px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: 22px;
 }
 .contact-card h3 {
-  margin: 0 0 10px;
-  font-size: 20px;
+  margin: 0 0 12px;
+  font-size: 22px;
   letter-spacing: -0.2px;
 }
 .contact-card p {
-  margin: 0 0 20px;
+  margin: 0 0 24px;
   color: var(--muted);
-  font-size: 14.5px;
-  line-height: 1.5;
+  font-size: 15.5px;
+  line-height: 1.55;
   flex-grow: 1;
 }
 .contact-card .contact-link {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--primary);
   border-bottom: 2px solid rgba(11, 95, 255, 0.15);
-  padding-bottom: 2px;
+  padding-bottom: 3px;
   transition: all 0.2s ease;
 }
 .contact-card .contact-link:hover {
@@ -1596,7 +1596,7 @@ details p {
 }
 .contact-card .contact-val {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--text);
 }
 @media (max-width: 768px) {
