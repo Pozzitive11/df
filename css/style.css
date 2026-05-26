@@ -1453,6 +1453,13 @@ details p {
   flex-wrap: wrap;
   align-items: center;
 }
+.academy-actions a.mail-link {
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 .academy-actions .btn {
   background: var(--accent);
   color: #fff;
@@ -1504,15 +1511,31 @@ details p {
   color: #b6c2d5;
   font-size: 15px;
 }
-.career-submit a.mail {
-  display: inline-block;
+.career-submit .career-action {
+  display: flex;
+  justify-content: flex-end;
+}
+.career-submit a.mail-link {
   color: #fff;
   font-weight: 600;
-  font-size: 17px;
-  margin-top: 6px;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 4px;
+  transition: all 0.2s ease;
 }
-.career-submit .btn {
-  justify-content: center;
+.career-submit a.mail-link:hover {
+  border-bottom-color: #fff;
+  text-decoration: none;
+  transform: translateX(4px);
+}
+@media (max-width: 1024px) {
+  .career-submit .career-action {
+    justify-content: flex-start;
+  }
 }
 
 /* CTA / CONTACT */
