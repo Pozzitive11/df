@@ -1,0 +1,216 @@
+/* Legal pages (privacy.html, cookies.html, consent.html).
+   Layered on top of style.css — only legal-specific rules and overrides live here. */
+
+/* Narrow reading width for the page head and legal body (header/footer stay full width) */
+.page-head .container,
+main.legal .container {
+  max-width: 880px;
+}
+main.legal {
+  padding: 28px 0 64px;
+  line-height: 1.65;
+}
+
+/* PAGE HEAD */
+.page-head {
+  background:
+    radial-gradient(
+      900px 360px at 90% -10%,
+      rgba(11, 95, 255, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 300px at -10% 110%,
+      rgba(255, 122, 26, 0.06),
+      transparent 60%
+    ),
+    var(--bg);
+  padding: 28px 0 28px;
+  border-bottom: 1px solid var(--border);
+}
+.crumbs {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.crumbs a {
+  color: var(--muted);
+}
+.page-head h1 {
+  font-size: 38px;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  letter-spacing: -0.4px;
+}
+.page-head p.lead {
+  font-size: 17px;
+  color: var(--muted);
+  margin: 0;
+  max-width: 680px;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.meta-bar b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* CONTENT */
+.legal h2 {
+  font-size: 24px;
+  margin: 40px 0 12px;
+  letter-spacing: -0.2px;
+  scroll-margin-top: 96px;
+}
+.legal h3 {
+  font-size: 18px;
+  margin: 24px 0 8px;
+}
+.legal p {
+  margin: 0 0 12px;
+}
+.legal ul,
+.legal ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+.legal ul li,
+.legal ol li {
+  margin-bottom: 6px;
+}
+.legal .small {
+  font-size: 13px;
+  color: var(--muted);
+}
+.legal .callout {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin: 18px 0;
+  font-size: 15px;
+}
+
+/* TABLES (cookies.html, privacy.html) */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 14px 0 22px;
+}
+.legal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 22px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.table-wrap table {
+  margin: 0;
+}
+.legal th,
+.legal td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+.legal th {
+  background: var(--bg-soft);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.legal tr:last-child td {
+  border-bottom: none;
+}
+
+/* TABLE OF CONTENTS (privacy.html) */
+.toc {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 36px;
+}
+.toc h2 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+.toc ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+.toc ol li a {
+  color: var(--text);
+  font-weight: 500;
+}
+.toc ol li a:hover {
+  color: var(--primary);
+}
+
+/* COOKIE TYPE BADGE (cookies.html) */
+.badge-type {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e8f0ff;
+  color: var(--primary);
+  white-space: nowrap;
+}
+.badge-type.opt {
+  background: #fff1e5;
+  color: #b14c00;
+}
+
+/* CONSENT TEXT CARDS (consent.html) */
+.quote-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 26px;
+  margin: 16px 0 28px;
+}
+.quote-card h3 {
+  margin-top: 0;
+}
+.micro-text {
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .page-head h1 {
+    font-size: 28px;
+  }
+  .legal table {
+    font-size: 13px;
+  }
+  .legal th,
+  .legal td {
+    padding: 10px 12px;
+  }
+}

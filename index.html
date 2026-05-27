@@ -12,21 +12,17 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="theme-color" content="#0b5fff" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0b3acc" media="(prefers-color-scheme: dark)" />
-<!-- Geo / Local SEO -->
 <meta name="geo.region" content="UA-30" />
 <meta name="geo.placename" content="Київ" />
 <meta name="geo.position" content="50.4501;30.5234" />
 <meta name="ICBM" content="50.4501, 30.5234" />
 
-    <!-- Preload critical resources -->
     <link rel="preload" href="css/style.css" as="style" />
     <link rel="preload" href="images/datafactory-logo-wordmark.svg" as="image" />
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://datafactory.com.ua/">
     <meta property="og:site_name" content="Фабрика даних">
@@ -36,40 +32,36 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://datafactory.com.ua/">
     <meta property="twitter:title" content="Звітність до Кредитного реєстру 2.0 НБУ | Фабрика даних — Київ">
     <meta property="twitter:description" content="Автоматизована подача звіту D050 до Кредитного реєстру 2.0 НБУ для фінкомпаній. Власний застосунок, BI-дашборди, команда аналітиків.">
     <meta property="twitter:image" content="https://datafactory.com.ua/images/og-preview.png">
 
-    <!-- Favicon & App Icons -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/svg+xml" href="images/favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicons/favicon-96x96.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <link rel="stylesheet" href="css/style.css?v=2" />
+    <link rel="stylesheet" href="css/style.css?v=3" />
 
 </head>
 <body>
 
-<!-- SKIP LINK -->
 <a href="#main-content" class="skip-link">Перейти до основного контенту</a>
 
-<!-- HEADER -->
 <header class="site">
   <div class="container nav">
     <a class="logo" href="#top">
       <img src="images/datafactory-logo-wordmark.svg" alt="Логотип Фабрика даних — ІТ-компанія, Київ" width="160" height="44" />
     </a>
-    <!-- NAV CONTAINER FOR MOBILE/DESKTOP -->
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="Основна навігація">
         <a href="#about">Про нас</a>
-        <a href="#audience">Наші клієнти</a>
-        <a href="#credit-registry">Послуга</a>
+        <a href="#services">Послуги</a>
+        <a href="#credit-registry">Кредитний реєстр</a>
+        <a href="#audience">Клієнти</a>
         <a href="#career">Карʼєра</a>
         <a href="#contact">Контакти</a>
       </nav>
@@ -77,7 +69,6 @@
         <a class="btn btn-primary" href="#contact">Звʼязатися</a>
       </div>
     </div>
-    <!-- HAMBURGER BUTTON -->
     <button class="hamburger" id="hamburgerBtn" aria-label="Відкрити меню">
       <span class="bar"></span>
       <span class="bar"></span>
@@ -88,73 +79,53 @@
 
 <main id="main-content">
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="container hero-grid">
     <div>
-      <span class="badge"><span class="dot"></span>Регуляторна звітність для небанківських фінансових установ</span>
-      <h1>Звітність до <span class="accent">Кредитного реєстру 2.0 НБУ</span> — у нашому застосунку</h1>
+      <span class="badge"><span class="dot"></span>Українська ІТ-компанія</span>
+      <h1>Програмні рішення, робота з <span class="accent">даними</span> та автоматизація процесів</h1>
       <p class="lead">
-        Фабрика даних — українська ІТ-компанія. Понад рік щомісяця готуємо та подаємо звітність
-        до Кредитного реєстру 2.0 НБУ у власному автоматизованому застосунку — з валідацією,
-        дашбордами та повним супроводом наших аналітиків.
+        ТОВ «Фабрика даних» — розробляємо застосунки, інтегруємо системи та автоматизуємо
+        бек-офіс для фінансових, юридичних, рітейл-компаній і контакт-центрів. Працюємо
+        in-house, без аутсорсу критичної експертизи.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#contact">
-          Звʼязатися з нами
+        <a class="btn btn-primary" href="#services">
+          Наші послуги
           <span aria-hidden="true">→</span>
         </a>
-        <a class="btn btn-ghost" href="#credit-registry">Дізнатися деталі</a>
+        <a class="btn btn-ghost" href="#contact">Звʼязатися з нами</a>
       </div>
-      <div class="hero-meta">
-        <div class="item"><span class="num">1+ рік</span><span class="lbl">подаємо звітність<br/>до Кредитного реєстру НБУ</span></div>
-        <div class="item"><span class="num">In-house</span><span class="lbl">команда розробників<br/>та аналітиків БД</span></div>
-        <div class="item"><span class="num">100%</span><span class="lbl">відповідність<br/>вимогам НБУ</span></div>
-      </div>
+
     </div>
 
-    <!-- DASHBOARD MOCK -->
-    <div class="dashboard" aria-hidden="true">
+    <div class="hero-overview" aria-hidden="true">
       <div class="dash-bar">
         <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="url">app.datafactory.com.ua/credit-registry</span>
+        <span class="url">datafactory.com.ua/services</span>
       </div>
-      <div class="dash-stats">
-        <div class="stat"><div class="lbl">Подано записів</div><div class="val">12 487</div><div class="delta">↑ 4,2% до періоду</div></div>
-        <div class="stat"><div class="lbl">Активні угоди</div><div class="val">3 421</div><div class="delta">↑ 1,8%</div></div>
-        <div class="stat"><div class="lbl">Помилок</div><div class="val">0</div><div class="delta">всі прийнято</div></div>
+
+      <div class="hsv-flag">
+        <div class="hsv-icon">📑</div>
+        <div class="hsv-content">
+          <h4>Кредитний реєстр 2.0 НБУ</h4>
+          <p>Повний супровід звітності D050</p>
+        </div>
+        <span class="hsv-badge">Флагман</span>
       </div>
-      <div class="dash-chart">
-        <div class="title">Динаміка обсягу звітності, останні 6 періодів</div>
-        <svg viewBox="0 0 400 140" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#0B5FFF" stop-opacity=".35"/>
-              <stop offset="100%" stop-color="#0B5FFF" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path d="M10,110 L73,90 L137,98 L200,68 L263,52 L327,40 L390,24 L390,140 L10,140 Z" fill="url(#grad)"/>
-          <path d="M10,110 L73,90 L137,98 L200,68 L263,52 L327,40 L390,24" fill="none" stroke="#0B5FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="10" cy="110" r="3.5" fill="#0B5FFF"/>
-          <circle cx="73" cy="90" r="3.5" fill="#0B5FFF"/>
-          <circle cx="137" cy="98" r="3.5" fill="#0B5FFF"/>
-          <circle cx="200" cy="68" r="3.5" fill="#0B5FFF"/>
-          <circle cx="263" cy="52" r="3.5" fill="#0B5FFF"/>
-          <circle cx="327" cy="40" r="3.5" fill="#0B5FFF"/>
-          <circle cx="390" cy="24" r="4.5" fill="#FF7A1A" stroke="#fff" stroke-width="2"/>
-        </svg>
-      </div>
-      <div class="dash-table">
-        <div class="row head"><span>Звіт</span><span>Період</span><span>Записів</span><span>Статус</span></div>
-        <div class="row"><span>D050 Активні операції</span><span>04.2026</span><span>2 102</span><span class="pill ok">прийнято</span></div>
-        <div class="row"><span>D050 Активні операції</span><span>03.2026</span><span>2 048</span><span class="pill ok">прийнято</span></div>
-        <div class="row"><span>D050 Чернетка</span><span>05.2026</span><span>2 134</span><span class="pill wait">в обробці</span></div>
+
+      <div class="hsv-grid">
+        <div class="hsv-tile"><div class="ico">📊</div><div class="nm">Data Science</div></div>
+        <div class="hsv-tile"><div class="ico">💼</div><div class="nm">ПЗ для фінансів</div></div>
+        <div class="hsv-tile"><div class="ico">⚖️</div><div class="nm">ПЗ для юристів</div></div>
+        <div class="hsv-tile"><div class="ico">🏢</div><div class="nm">ERP-системи</div></div>
+        <div class="hsv-tile"><div class="ico">📈</div><div class="nm">Big Data</div></div>
+        <div class="hsv-tile"><div class="ico">📁</div><div class="nm">EDMS</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="section-head">
@@ -194,79 +165,135 @@
   </div>
 </section>
 
-<!-- AUDIENCE / CLIENTS -->
-<section id="audience" class="alt">
+<section id="why-us" class="alt">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">Наші клієнти</div>
-      <h2>Кому ми допомагаємо зі звітністю до НБУ</h2>
-      <p>З 2024 року перелік субʼєктів звітування до Кредитного реєстру 2.0 суттєво розширений. Працюємо з тими, кому ця звітність найболючіша.</p>
+      <div class="eyebrow">Чому з нами працюють</div>
+      <h2>Чотири аргументи, чому обирають Фабрику даних</h2>
+      <p>Підхід, який однаково працює для невеликої фінансової установи та для рітейлу з кількома обліковими системами.</p>
     </div>
-    <div class="clients-grid">
-      <div class="client-card reveal">
-        <div class="client-icon">💼</div>
-        <h3>Фінансові компанії</h3>
-        <p>Кредитування, факторинг, фінансовий лізинг — будь-яка діяльність з активними операціями, що підлягає звітності D050.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">👥</div>
+        <h3>In-house команда</h3>
+        <p>Розробники, аналітики БД, бізнес-аналітики та інженери підтримки — у єдиній команді. Без посередників, без фрилансерів, без розсіяної відповідальності.</p>
       </div>
-      <div class="client-card reveal">
-        <div class="client-icon">🚗</div>
-        <h3>Лізингові компанії</h3>
-        <p>Подача звіту про активні операції за лізинговими договорами з повним контролем статусів і помилок.</p>
+      <div class="why-card reveal">
+        <div class="why-icon">🇺🇦</div>
+        <h3>Український продукт</h3>
+        <p>Розробляємо в Україні, українською мовою, для українського ринку та регуляторів. Розуміємо контекст, законодавство та особливості локального бізнесу.</p>
       </div>
-      <div class="client-card reveal">
-        <div class="client-icon">💰</div>
-        <h3>Ломбарди</h3>
-        <p>Підготовка та подання звітності з урахуванням специфіки заставних операцій і коротких кредитів.</p>
+      <div class="why-card reveal">
+        <div class="why-icon">🧩</div>
+        <h3>Експертиза, а не лише код</h3>
+        <p>Інженери, які знають не лише як написати застосунок, а й специфіку фінансової звітності, юридичного діловодства, рітейл-логістики.</p>
       </div>
-      <div class="client-card reveal">
-        <div class="client-icon">📋</div>
-        <h3>Колекторські та факторингові</h3>
-        <p>Звітування за переуступленими правами вимоги, реструктуризацією та списанням заборгованості.</p>
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <h3>Гнучкість підходу</h3>
+        <p>Від точкової консультації до повного впровадження «під ключ». Адаптуємось під бюджет, інфраструктуру та темп ухвалення рішень замовника.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================== -->
-<!-- CREDIT REGISTRY 2.0 — flagship  -->
-<!-- ============================== -->
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Наші послуги</div>
+      <h2>Що ми робимо</h2>
+      <p>Кожен клієнт унікальний, тому підхід до розробки ПЗ та роботи з даними завжди базується на індивідуальних потребах. Працюємо тісно з клієнтами, щоб знайти оптимальне рішення, яке враховує специфіку бізнесу.</p>
+    </div>
 
-<!-- CR Intro band -->
-<section id="credit-registry">
+    <div class="services-grid">
+
+      <article class="svc-card flagship">
+        <span class="flagship-badge">Флагман</span>
+        <div class="svc-icon" aria-hidden="true">📑</div>
+        <h3>Кредитний реєстр 2.0 НБУ</h3>
+        <p>Повний цикл супроводу звітності D050 для небанківських фінансових установ: підготовка таксономії, нормалізація даних із систем обліку, формування звіту, накладання КЕП, подача в кабінет НБУ, контроль квитанцій і робота над помилками. Власний застосунок та аналітики у супроводі.</p>
+        <div class="flag-features">
+          <span class="flag-feat">Власний застосунок</span>
+          <span class="flag-feat">In-house аналітики</span>
+          <span class="flag-feat">Щомісячна подача</span>
+        </div>
+        <a class="more" href="#credit-registry">Детально про послугу →</a>
+      </article>
+
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">📊</div>
+        <h3>Data Science</h3>
+        <p>Комплексні рішення з обробки та аналізу даних: підготовка даних, побудова моделей прогнозування ключових показників, оптимізація процесів та підтримка прийняття обґрунтованих рішень.</p>
+      </article>
+
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">💼</div>
+        <h3>ПЗ для фінансових компаній</h3>
+        <p>Автоматизація фінансових процесів, інтеграція з обліковими системами, забезпечення безпеки даних та відповідність нормативним вимогам. Індивідуальні рішення для кожного клієнта.</p>
+      </article>
+
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">⚖️</div>
+        <h3>ПЗ для юридичних компаній</h3>
+        <p>Автоматизація юридичних процесів, управління документацією, облік судових справ, взаємодія з державними реєстрами. Підвищення продуктивності та зменшення помилок у роботі юристів.</p>
+      </article>
+
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">🏢</div>
+        <h3>ERP-системи</h3>
+        <p>Розробка систем управління підприємством — від планування ресурсів до кадрового обліку та HR. Інтеграція бізнес-процесів у єдину систему з прозорим контролем діяльності.</p>
+      </article>
+
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">📈</div>
+        <h3>Big Data аналітика</h3>
+        <p>Збирання, обробка та аналіз великих обсягів даних. Побудова складних аналітичних моделей і візуалізацій для прогнозування попиту та підтримки стратегічних рішень.</p>
+      </article>
+
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">📁</div>
+        <h3>EDMS — електронний документообіг</h3>
+        <p>Розробка та впровадження систем для управління документацією: збереження, легкий доступ, безпека. Зменшує витрати на роботу з документами та ризики втрати важливої інформації.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="credit-registry" class="alt">
   <div class="container">
     <div class="cr-intro reveal">
-          <div>
-            <div class="eyebrow">Наша послуга</div>
-            <h2>Кредитний реєстр 2.0 НБУ — повний цикл звітності</h2>
-            <p>
-              Експертний супровід та власний автоматизований застосунок для
-              подачі звіту D050 про активні операції до Кредитного реєстру 2.0.
-              Збираємо, валідуємо, формуємо та подаємо звіт за вас — у строк і у
-              повній відповідності до технічних вимог НБУ.
-            </p>
-            <div class="cr-intro-actions">
-              <a class="btn btn-light" href="#contact">Звʼязатися з нами</a>
-              <a class="btn btn-ghost btn-ghost-light" href="#cr-formats">Формати співпраці</a>
-            </div>
-          </div>
-          <div class="cr-metrics">
-            <div class="cr-metric-card">
-              <div class="cr-metric-eyebrow">Досвід</div>
-              <div class="cr-metric-val">1+ рік у проді</div>
-              <div class="cr-metric-desc">подаємо звітність фінкомпаніям щомісяця</div>
-            </div>
-            <div class="cr-metric-card">
-              <div class="cr-metric-eyebrow">Перевага</div>
-              <div class="cr-metric-val">Дашборди + BI</div>
-              <div class="cr-metric-desc">аналітика портфеля у комплекті, не лише регуляторика</div>
-            </div>
-          </div>
+      <div>
+        <div class="eyebrow">Флагман — детально</div>
+        <h2>Кредитний реєстр 2.0 НБУ — повний цикл звітності</h2>
+        <p>
+          Експертний супровід та власний автоматизований застосунок для
+          подачі звіту D050 про активні операції до Кредитного реєстру 2.0.
+          Збираємо, валідуємо, формуємо та подаємо звіт за вас — у строк і у
+          повній відповідності до технічних вимог НБУ.
+        </p>
+        <div class="cr-intro-actions">
+          <a class="btn btn-light" href="#contact">Звʼязатися з нами</a>
+          <a class="btn btn-ghost btn-ghost-light" href="#cr-formats">Формати співпраці</a>
         </div>
       </div>
+      <div class="cr-metrics">
+        <div class="cr-metric-card">
+          <div class="cr-metric-eyebrow">Досвід</div>
+          <div class="cr-metric-val">1+ рік у проді</div>
+          <div class="cr-metric-desc">подаємо звітність фінкомпаніям щомісяця</div>
+        </div>
+        <div class="cr-metric-card">
+          <div class="cr-metric-eyebrow">Перевага</div>
+          <div class="cr-metric-val">Дашборди + BI</div>
+          <div class="cr-metric-desc">аналітика портфеля у комплекті, не лише регуляторика</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- CONTEXT -->
 <section id="cr-context">
   <div class="container">
     <div class="section-head">
@@ -302,7 +329,6 @@
   </div>
 </section>
 
-<!-- WHY US -->
 <section id="cr-why" class="alt">
   <div class="container">
     <div class="section-head">
@@ -335,12 +361,11 @@
   </div>
 </section>
 
-<!-- FORMATS -->
 <section id="cr-formats">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Формати співпраці</div>
-      <h2>Три формати послуг з подачі звітності до Кредитного реєстру 2.0 НБУ</h2>
+      <h2>Три способи, як ми можемо допомогти</h2>
       <p>Вам не обовʼязково одразу переходити на наш застосунок. Можемо стати вашим консультантом, налаштувати рішення, яке ви вже використовуєте, або повністю взяти звітність на себе у нашому продукті.</p>
     </div>
     <div class="formats-grid">
@@ -348,11 +373,8 @@
       <div class="format reveal">
         <div class="format-icon" aria-hidden="true">💬</div>
         <h3>Консультації та експертиза</h3>
-            <p class="lead">
-              Експертна підтримка з питань Кредитного реєстру 2.0 без зміни
-              вашої існуючої інфраструктури.
-            </p>
-            <ul class="check-list check-list-blue">
+        <p class="lead">Експертна підтримка з питань Кредитного реєстру 2.0 без зміни вашої існуючої інфраструктури.</p>
+        <ul class="check-list check-list-blue">
           <li>Аудит готовності до подачі звіту D050</li>
           <li>Розбір складних регуляторних кейсів (переуступка, реструктуризація, дефолти)</li>
           <li>Допомога з підготовкою та якістю даних</li>
@@ -365,11 +387,8 @@
       <div class="format reveal">
         <div class="format-icon" aria-hidden="true">🔧</div>
         <h3>Налаштування існуючого рішення</h3>
-            <p class="lead">
-              У вас уже є інструмент для звітності — NBU-Connect, BAS, M.E.Doc,
-              кастомне ПЗ? Налаштуємо й інтегруємо його під ваші процеси.
-            </p>
-            <ul class="check-list check-list-blue">
+        <p class="lead">У вас уже є інструмент для звітності — NBU-Connect, BAS, M.E.Doc, кастомне ПЗ? Налаштуємо й інтегруємо його під ваші процеси.</p>
+        <ul class="check-list check-list-blue">
           <li>Інтеграція ваших джерел даних з наявним ПЗ</li>
           <li>Маппінг довідників, налаштування правил валідації</li>
           <li>Автоматизація рутинних операцій підготовки звіту</li>
@@ -382,11 +401,8 @@
       <div class="format featured reveal">
         <div class="format-icon" aria-hidden="true">⚡</div>
         <h3>Повний цикл у нашому застосунку</h3>
-            <p class="lead">
-              Найповніший варіант: наш автоматизований застосунок плюс
-              експертний супровід та аналітика портфеля.
-            </p>
-            <ul class="check-list check-list-blue">
+        <p class="lead">Найповніший варіант: наш автоматизований застосунок плюс експертний супровід та аналітика портфеля.</p>
+        <ul class="check-list check-list-blue">
           <li>Власний застосунок із валідацією за правилами НБУ</li>
           <li>Автоматизована подача та контроль статусів</li>
           <li>BI-дашборди кредитного портфеля «з коробки»</li>
@@ -400,7 +416,6 @@
   </div>
 </section>
 
-<!-- PRODUCT DETAILS -->
 <section id="cr-product" class="alt">
   <div class="container">
     <div class="section-head">
@@ -411,9 +426,9 @@
 
     <div class="svc-grid">
       <div class="svc reveal">
-            <h3><span class="num">01</span>Підключення та налаштування</h3>
-            <p>Аудит ваших джерел даних, маппінг полів під довідники НБУ, налаштування правил класифікації та звірок.</p>
-            <ul class="check-list check-list-green">
+        <h3><span class="num">01</span>Підключення та налаштування</h3>
+        <p>Аудит ваших джерел даних, маппінг полів під довідники НБУ, налаштування правил класифікації та звірок.</p>
+        <ul class="check-list check-list-green">
           <li>Розгортання застосунку (cloud/on-premise)</li>
           <li>Підключення джерел: через API або Excel</li>
           <li>Маппінг довідників: продукти, валюти, типи забезпечення</li>
@@ -422,9 +437,9 @@
       </div>
 
       <div class="svc reveal">
-            <h3><span class="num">02</span>Автоматизоване формування звіту</h3>
-            <p>Застосунок збирає дані з джерел, нормалізує, проходить вбудовану валідацію за правилами НБУ та формує XML-пакет.</p>
-            <ul class="check-list check-list-green">
+        <h3><span class="num">02</span>Автоматизоване формування звіту</h3>
+        <p>Застосунок збирає дані з джерел, нормалізує, проходить вбудовану валідацію за правилами НБУ та формує XML-пакет.</p>
+        <ul class="check-list check-list-green">
           <li>500+ вбудованих перевірок (синтаксис, бізнес-правила НБУ)</li>
           <li>Підсвічування помилок з посиланням на конкретний запис</li>
           <li>Масове редагування за фільтрами</li>
@@ -433,9 +448,9 @@
       </div>
 
       <div class="svc reveal">
-            <h3><span class="num">03</span>Подача та контроль статусів</h3>
-            <p>Накладаєте КЕП — застосунок підписує та передає звіт до НБУ, відстежує статус кожного запису та повідомляє про результат.</p>
-            <ul class="check-list check-list-green">
+        <h3><span class="num">03</span>Подача та контроль статусів</h3>
+        <p>Накладаєте КЕП — застосунок підписує та передає звіт до НБУ, відстежує статус кожного запису та повідомляє про результат.</p>
+        <ul class="check-list check-list-green">
           <li>Інтеграція з API НБУ для подачі та квитанцій</li>
           <li>Сповіщення про статуси у застосунку</li>
           <li>Автоматичні повторні спроби при технічних збоях</li>
@@ -444,9 +459,9 @@
       </div>
 
       <div class="svc reveal">
-            <h3><span class="num">04</span>Дашборди та BI-аналітика</h3>
-            <p>Окрім регуляторної функції — управлінська цінність: бачте свій кредитний портфель у реальному часі, не у Excel.</p>
-            <ul class="check-list check-list-green">
+        <h3><span class="num">04</span>Дашборди та BI-аналітика</h3>
+        <p>Окрім регуляторної функції — управлінська цінність: бачте свій кредитний портфель у реальному часі, не у Excel.</p>
+        <ul class="check-list check-list-green">
           <li>Структура портфеля: за продуктами, валютами, регіонами</li>
           <li>Динаміка виданих, погашених, списаних</li>
           <li>Прострочка, концентрація на одного боржника</li>
@@ -455,9 +470,9 @@
       </div>
 
       <div class="svc reveal">
-            <h3><span class="num">05</span>Експертний супровід</h3>
-            <p>Не залишаємо віч-на-віч з реєстром. Наш аналітик допомагає з кожним кейсом та змінами регуляторики.</p>
-            <ul class="check-list check-list-green">
+        <h3><span class="num">05</span>Експертний супровід</h3>
+        <p>Не залишаємо віч-на-віч з реєстром. Наш аналітик допомагає з кожним кейсом та змінами регуляторики.</p>
+        <ul class="check-list check-list-green">
           <li>Виділений менеджер та технічний інженер</li>
           <li>Допомога з нестандартними операціями (переуступка, реструктуризація)</li>
           <li>Адаптація застосунку під зміни постанов НБУ</li>
@@ -466,9 +481,9 @@
       </div>
 
       <div class="svc reveal">
-            <h3><span class="num">06</span>Безпека та відповідність</h3>
-            <p>Ваші дані залишаються у вас. Працюємо у вашому контурі або у захищеному сегменті cloud з шифруванням.</p>
-            <ul class="check-list check-list-green">
+        <h3><span class="num">06</span>Безпека та відповідність</h3>
+        <p>Ваші дані залишаються у вас. Працюємо у вашому контурі або у захищеному сегменті cloud з шифруванням.</p>
+        <ul class="check-list check-list-green">
           <li>On-premise або private cloud за вибором</li>
           <li>Шифрування у спокої та при передачі</li>
           <li>Розмежування доступів за ролями</li>
@@ -479,7 +494,6 @@
   </div>
 </section>
 
-<!-- APP MOCKUPS (subsection of service) -->
 <section id="app">
   <div class="container">
     <div class="section-head">
@@ -490,7 +504,6 @@
 
     <div class="app-grid">
 
-      <!-- MOCKUP 1: Multi-company selector -->
       <div class="app-mockup">
         <div class="app-mockup-header">
           <div>
@@ -557,7 +570,6 @@
         </div>
       </div>
 
-      <!-- MOCKUP 2: 6-stage submission process -->
       <div class="app-mockup">
         <div class="app-mockup-header">
           <div>
@@ -595,7 +607,6 @@
         </div>
       </div>
 
-      <!-- MOCKUP 3: Period comparison table -->
       <div class="app-mockup">
         <div class="app-mockup-header">
           <div>
@@ -619,17 +630,16 @@
               <span class="num">Різниця</span>
               <span class="num">Період 3</span>
             </div>
-
             <div class="row cat"><span>● КР — Кредитний реєстр НБУ</span><span></span><span></span><span></span><span></span></div>
             <div class="row highlighted"><span>Підлягає поданню в КР</span><span class="num">850 000</span><span class="num">855 000</span><span class="num delta-pos">↑ 5 000</span><span class="num">860 000</span></div>
-            <div class="row"><span>Кредити фізичних осіб, видані</span><span class="num">10 000</span><span class="num">11 000</span><span class="num delta-pos">↑ 1 000</span><span class="num">11 500</span></div>
-            <div class="row"><span>Кредити фізичних осіб, куплені</span><span class="num">800 000</span><span class="num">805 000</span><span class="num delta-pos">↑ 5 000</span><span class="num">810 000</span></div>
-            <div class="row"><span>Кредити юридичних осіб, видані</span><span class="num">40</span><span class="num">45</span><span class="num delta-pos">↑ 5</span><span class="num">50</span></div>
-            <div class="row"><span>Кредити юридичних осіб, куплені</span><span class="num">220</span><span class="num">225</span><span class="num delta-pos">↑ 5</span><span class="num">230</span></div>
+            <div class="row"><span>Кредити фізичних осіб, куплені</span><span class="num">800 000</span><span class="num">803 000</span><span class="num delta-pos">↑ 3 000</span><span class="num">806 000</span></div>
+            <div class="row"><span>Кредити фізичних осіб, видані</span><span class="num">10 000</span><span class="num">11 000</span><span class="num delta-pos">↑ 1 000</span><span class="num">12 000</span></div>
+            <div class="row"><span>Кредити юридичних осіб, куплені</span><span class="num">30 000</span><span class="num">31 000</span><span class="num delta-pos">↑ 1 000</span><span class="num">32 000</span></div>
+            <div class="row"><span>Кредити юридичних осіб, видані</span><span class="num">10 000</span><span class="num">10 000</span><span class="num delta-pos">— 0</span><span class="num">10 000</span></div>
             <div class="row"><span>Прострочка ≥ 30 днів</span><span class="num">45 000</span><span class="num">42 000</span><span class="num delta-pos">↓ 3 000</span><span class="num">40 000</span></div>
             <div class="row"><span>Загальний обсяг портфеля, грн</span><span class="num">1,2 млрд</span><span class="num">1,25 млрд</span><span class="num delta-pos">↑ 50 млн</span><span class="num">1,3 млрд</span></div>
           </div>
-          <p class="mk-cmp-disclaimer">Цифри у таблиці — приклад для ілюстрації функціоналу. Реальні дані клієнтів конфіденційні.</p>
+          <p class="mk-cmp-table-note">Цифри у таблиці — приклад для ілюстрації функціоналу. Реальні дані клієнтів конфіденційні.</p>
         </div>
         <div class="app-mockup-caption">
           <b>Порівняння періодів з дельтами.</b> Зеленим — позитивні зміни (приріст портфеля або скорочення прострочки), червоним — негативні. Зверху перемикач «таблиця ↔ графіки»: ті самі метрики доступні у вигляді лінійних або стовпчикових діаграм для презентацій. Підкреслені значення клікабельні — переходять до деталізації по конкретному запису.
@@ -640,7 +650,6 @@
   </div>
 </section>
 
-<!-- PROCESS -->
 <section id="cr-process" class="alt">
   <div class="container">
     <div class="section-head">
@@ -673,7 +682,6 @@
   </div>
 </section>
 
-<!-- OFFER -->
 <section id="cr-offer">
   <div class="container">
     <div class="section-head">
@@ -711,7 +719,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="cr-faq" class="alt">
   <div class="container">
     <div class="section-head">
@@ -752,8 +759,39 @@
   </div>
 </section>
 
-<!-- CAREER -->
-<section id="career">
+<section id="audience">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Наші клієнти</div>
+      <h2>Кому ми допомагаємо</h2>
+      <p>Наші послуги користуються попитом у різних галузях бізнесу. Створюємо індивідуальні рішення, які підвищують ефективність і конкурентоспроможність на ринку.</p>
+    </div>
+    <div class="clients-grid">
+      <div class="client-card reveal">
+        <div class="client-icon">💼</div>
+        <h3>Фінансові компанії</h3>
+        <p>Фінансові установи, які шукають надійні рішення для автоматизації процесів, регуляторної звітності, інтеграцій із системами обліку та контролю ризиків.</p>
+      </div>
+      <div class="client-card reveal">
+        <div class="client-icon">⚖️</div>
+        <h3>Юридичні компанії</h3>
+        <p>Юридичні фірми та правові організації, яким потрібні інструменти для управління документацією, обліку судових справ та взаємодії з державними реєстрами.</p>
+      </div>
+      <div class="client-card reveal">
+        <div class="client-icon">📞</div>
+        <h3>Кол-центри</h3>
+        <p>Організації з підтримки клієнтів та продажів, що потребують CRM-систем, інтеграцій з телефонією та автоматизованих рішень для покращення комунікацій.</p>
+      </div>
+      <div class="client-card reveal">
+        <div class="client-icon">🛒</div>
+        <h3>Рітейл-бізнеси</h3>
+        <p>Компанії роздрібної торгівлі, яким потрібні програмні рішення для управління запасами, продажами, логістикою та інтеграцій між системами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="career" class="alt">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Карʼєра</div>
@@ -799,7 +837,6 @@
       </div>
     </div>
 
-    <!-- ACADEMY for trainees -->
     <div class="academy reveal">
       <div class="academy-left">
         <div class="academy-icon">🎓</div>
@@ -814,6 +851,12 @@
           <li>Без сертифікатів-для-стіни — реальні навички</li>
           <li>Працевлаштування для найкращих випускників</li>
         </ul>
+        <div class="academy-actions">
+          <a class="btn" href="mailto:ASkliarenko@at.kiev.ua?subject=Заявка%20на%20академію%20—%20Фабрика%20даних">
+            Подати заявку на академію
+          </a>
+          <span class="academy-note">або напишіть на <a href="mailto:ASkliarenko@at.kiev.ua">ASkliarenko@at.kiev.ua</a></span>
+        </div>
       </div>
     </div>
 
@@ -831,8 +874,7 @@
   </div>
 </section>
 
-<!-- CONTACTS -->
-<section id="contact" class="alt">
+<section id="contact">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Контакти</div>
@@ -852,40 +894,49 @@
         <p>Зателефонуйте нам для швидкої консультації з будь-яких питань.</p>
         <a class="contact-link" href="tel:+380639753192">+38 (063) 975-31-92</a>
       </div>
-
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer class="site">
   <div class="container">
     <div class="foot-grid">
       <div class="foot-about">
         <a class="logo" href="#top">
-          <img src="images/datafactory-logo-wordmark.svg" alt="Фабрика даних" width="160" height="44" />
+          <img src="images/datafactory-logo-wordmark-white.svg" alt="Фабрика даних" width="160" height="44" />
         </a>
         <p>ТОВ «Фабрика даних» — українська ІТ-компанія. Створюємо програмні рішення для фінансових, юридичних, рітейл-компаній та контакт-центрів.</p>
       </div>
       <div>
-        <h4>Послуга</h4>
+        <h4>Послуги</h4>
         <ul>
-          <li><a href="#credit-registry">Кредитний реєстр 2.0 НБУ</a></li>
-          <li><a href="#cr-formats">Формати співпраці</a></li>
-          <li><a href="#app">Інтерфейс застосунку</a></li>
-          <li><a href="#cr-offer">Що входить у послугу</a></li>
-          <li><a href="#cr-faq">Часті запитання</a></li>
+          <li><a href="#credit-registry">Кредитний реєстр 2.0 НБУ <span style="color:#FF7A1A">●</span></a></li>
+          <li><a href="#services">Data Science</a></li>
+          <li><a href="#services">ПЗ для фінкомпаній</a></li>
+          <li><a href="#services">ПЗ для юристів</a></li>
+          <li><a href="#services">ERP-системи</a></li>
+          <li><a href="#services">Big Data</a></li>
+          <li><a href="#services">EDMS — документообіг</a></li>
         </ul>
       </div>
       <div>
         <h4>Компанія</h4>
         <ul>
           <li><a href="#about">Про нас</a></li>
+          <li><a href="#why-us">Чому ми</a></li>
           <li><a href="#audience">Клієнти</a></li>
           <li><a href="#career">Карʼєра</a></li>
           <li><a href="#contact">Контакти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Документи</h4>
+        <ul>
+          <li><a href="privacy.html">Політика конфіденційності</a></li>
+          <li><a href="cookies.html">Політика щодо cookies</a></li>
+          <li><a href="consent.html">Згода на обробку даних</a></li>
         </ul>
       </div>
       <div>
@@ -902,15 +953,63 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Фабрика даних. Усі права захищені.</span>
-      <span><span class="foot-links"><a href="#">Політика конфіденційності</a> · <a href="#">Умови використання</a></span></span>
+      <span><span class="foot-links"><a href="privacy.html">Політика конфіденційності</a> · <a href="cookies.html">Політика щодо cookies</a> · <a href="consent.html">Згода на обробку даних</a></span></span>
     </div>
   </div>
 </footer>
 
-    <!-- SCRIPTS -->
+    <div id="cookieBanner" role="dialog" aria-live="polite" aria-label="Згода на використання cookies">
+      <h4>Файли cookies</h4>
+      <p>
+        Ми використовуємо технічні cookies для роботи сайту та (за вашою згодою) — аналітичні cookies,
+        щоб розуміти, як ним користуються. Детальніше — у <a href="cookies.html">Політиці щодо cookies</a>.
+      </p>
+      <div class="cb-actions">
+        <button class="cb-accept" type="button" data-cb="all">Прийняти всі</button>
+        <button class="cb-essential" type="button" data-cb="essential">Лише необхідні</button>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var KEY = 'cookie_consent';
+      var MAX_AGE = 60 * 60 * 24 * 365;
+      function getCookie(name){
+        var m = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
+        return m ? decodeURIComponent(m[2]) : null;
+      }
+      function setCookie(name, value){
+        document.cookie = name + '=' + encodeURIComponent(value) +
+          '; path=/; max-age=' + MAX_AGE + '; SameSite=Lax';
+      }
+      function enableAnalytics(){
+        // TODO: підключіть аналітику тут, якщо використовуєте Google Analytics.
+      }
+      function hide(){
+        var b = document.getElementById('cookieBanner');
+        if (b) b.classList.remove('show');
+      }
+      document.addEventListener('DOMContentLoaded', function(){
+        var consent = getCookie(KEY);
+        var banner = document.getElementById('cookieBanner');
+        if (!banner) return;
+        if (consent === 'all') { enableAnalytics(); return; }
+        if (consent === 'essential') { return; }
+        banner.classList.add('show');
+        banner.addEventListener('click', function(e){
+          var btn = e.target.closest('[data-cb]');
+          if (!btn) return;
+          var choice = btn.getAttribute('data-cb');
+          setCookie(KEY, choice);
+          if (choice === 'all') enableAnalytics();
+          hide();
+        });
+      });
+    })();
+    </script>
+
     <script src="js/script.js" defer></script>
 
-    <!-- Structured Data: Organization -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -949,7 +1048,6 @@
     }
     </script>
 
-    <!-- Structured Data: SoftwareApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -974,7 +1072,6 @@
     }
     </script>
 
-    <!-- Structured Data: Service -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -999,7 +1096,6 @@
     }
     </script>
 
-    <!-- Structured Data: FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

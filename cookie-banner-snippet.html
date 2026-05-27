@@ -1,0 +1,114 @@
+<!--
+  ============================================================
+  Cookie consent banner — для вставки на datafactory.com.ua
+  ============================================================
+  ЯК ВСТАВИТИ:
+  1) Скопіюйте блок <style>…</style> у головний CSS або у <head>.
+  2) Скопіюйте блок <div id="cookieBanner">…</div> ПЕРЕД закриваючим </body>.
+  3) Скопіюйте блок <script>…</script> ПЕРЕД закриваючим </body>.
+
+  ЯК ПРАЦЮЄ:
+  • Банер зʼявляється тільки якщо у користувача ще немає cookie «cookie_consent».
+  • Вибір зберігається на 12 місяців.
+  • При натисканні «Прийняти всі» — викликається функція enableAnalytics()
+    (вставте туди свій код для Google Analytics / Meta Pixel, якщо плануєте).
+  • При натисканні «Лише необхідні» — аналітика не активується.
+  ============================================================
+-->
+
+<style>
+  #cookieBanner{
+    position:fixed;left:24px;right:24px;bottom:24px;
+    max-width:560px;margin:0 auto;
+    background:#0E1B2C;color:#fff;
+    border-radius:14px;box-shadow:0 12px 36px rgba(0,0,0,.22);
+    padding:20px 22px;font:14px/1.55 'Inter','Segoe UI',Arial,sans-serif;
+    z-index:9999;display:none;
+  }
+  #cookieBanner.show{display:block}
+  #cookieBanner h4{margin:0 0 8px;font-size:15px;color:#fff;font-weight:700}
+  #cookieBanner p{margin:0 0 14px;color:#B6C2D5}
+  #cookieBanner a{color:#7FB1FF;text-decoration:underline}
+  #cookieBanner .cb-actions{display:flex;gap:10px;flex-wrap:wrap}
+  #cookieBanner button{
+    border:none;padding:10px 16px;border-radius:8px;font-weight:600;font-size:14px;
+    cursor:pointer;transition:opacity .15s ease;
+  }
+  #cookieBanner button:hover{opacity:.9}
+  #cookieBanner .cb-accept{background:#0B5FFF;color:#fff}
+  #cookieBanner .cb-essential{background:transparent;color:#fff;border:1px solid #2B3D58}
+  @media (max-width:560px){
+    #cookieBanner{left:12px;right:12px;bottom:12px;padding:16px 18px}
+  }
+</style>
+
+<div id="cookieBanner" role="dialog" aria-live="polite" aria-label="Згода на використання cookies">
+  <h4>Файли cookies</h4>
+  <p>
+    Ми використовуємо технічні cookies для роботи сайту та (за вашою згодою) — аналітичні cookies,
+    щоб розуміти, як ним користуються. Детальніше — у <a href="cookies.html">Політиці щодо cookies</a>.
+  </p>
+  <div class="cb-actions">
+    <button class="cb-accept" type="button" data-cb="all">Прийняти всі</button>
+    <button class="cb-essential" type="button" data-cb="essential">Лише необхідні</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'cookie_consent';
+  var MAX_AGE = 60 * 60 * 24 * 365; // 12 місяців
+
+  function getCookie(name){
+    var m = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
+    return m ? decodeURIComponent(m[2]) : null;
+  }
+  function setCookie(name, value){
+    document.cookie = name + '=' + encodeURIComponent(value) +
+      '; path=/; max-age=' + MAX_AGE + '; SameSite=Lax';
+  }
+
+  function enableAnalytics(){
+    // TODO: підключіть аналітику тут, якщо використовуєте Google Analytics.
+    // Приклад:
+    // var s = document.createElement('script');
+    // s.async = true;
+    // s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
+    // document.head.appendChild(s);
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){dataLayer.push(arguments);}
+    // gtag('js', new Date());
+    // gtag('config', 'G-XXXXXXX', {anonymize_ip: true});
+  }
+
+  function hide(){
+    var b = document.getElementById('cookieBanner');
+    if (b) b.classList.remove('show');
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var consent = getCookie(KEY);
+    var banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (consent === 'all') {
+      enableAnalytics();
+      return; // банер не показуємо
+    }
+    if (consent === 'essential') {
+      return; // згоди немає — аналітику не вмикаємо
+    }
+
+    banner.classList.add('show');
+
+    banner.addEventListener('click', function(e){
+      var btn = e.target.closest('[data-cb]');
+      if (!btn) return;
+      var choice = btn.getAttribute('data-cb');
+      setCookie(KEY, choice);
+      if (choice === 'all') enableAnalytics();
+      hide();
+    });
+  });
+})();
+</script>
