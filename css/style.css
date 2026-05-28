@@ -1478,15 +1478,15 @@ details p {
   flex-grow: 1;
 }
 .contact-card .contact-link {
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--primary);
-  border-bottom: 2px solid rgba(11, 95, 255, 0.15);
-  padding-bottom: 3px;
-  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text);
+  border-bottom: none;
+  padding-bottom: 0;
+  transition: color 0.2s ease;
 }
 .contact-card .contact-link:hover {
-  border-bottom-color: var(--primary);
+  color: var(--primary);
   text-decoration: none;
 }
 .contact-card .contact-val {
