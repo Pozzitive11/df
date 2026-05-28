@@ -192,15 +192,6 @@ main.legal {
 .quote-card h3 {
   margin-top: 0;
 }
-.micro-text {
-  font-size: 13px;
-  color: var(--muted);
-  background: var(--bg-soft);
-  border: 1px dashed var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-}
-
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .page-head h1 {
