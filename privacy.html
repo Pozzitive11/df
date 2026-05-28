@@ -6,6 +6,7 @@
 <title>Політика конфіденційності — Фабрика даних</title>
 <meta name="description" content="Політика конфіденційності ТОВ «Фабрика даних» — як ми збираємо, обробляємо та зберігаємо персональні дані відповідно до Закону України «Про захист персональних даних»." />
 <meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://datafactory.com.ua/privacy.html" />
 <link rel="stylesheet" href="css/style.css?v=3" />
 <link rel="stylesheet" href="css/legal.css?v=2" />
 </head>
@@ -83,7 +84,7 @@
     <p>Терміни в цій Політиці вживаються у значеннях, визначених Законом України «Про захист персональних даних».</p>
     <p>Користуючись Сайтом, заповнюючи форми зворотного звʼязку або надсилаючи резюме, ви підтверджуєте, що ознайомились із цією Політикою, розумієте її положення та погоджуєтесь з обробкою своїх персональних даних у визначених тут обсягах та цілях.</p>
 
-    <h2 id="section-2">2. Власник персональних даних</h2>
+    <h2 id="section-2">2. Володілець персональних даних</h2>
     <p>Володільцем персональних даних, які обробляються через Сайт, є:</p>
     <ul>
       <li><b>Найменування:</b> Товариство з обмеженою відповідальністю «Фабрика даних»</li>
@@ -279,6 +280,56 @@
     </div>
   </div>
 </footer>
+
+<div id="cookieBanner" role="dialog" aria-live="polite" aria-label="Згода на використання cookies">
+  <h4>Файли cookies</h4>
+  <p>
+    Ми використовуємо технічні cookies для роботи сайту та (за вашою згодою) — аналітичні cookies,
+    щоб розуміти, як ним користуються. Детальніше — у <a href="cookies.html">Політиці щодо cookies</a>.
+  </p>
+  <div class="cb-actions">
+    <button class="cb-accept" type="button" data-cb="all">Прийняти всі</button>
+    <button class="cb-essential" type="button" data-cb="essential">Лише необхідні</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'cookie_consent';
+  var MAX_AGE = 60 * 60 * 24 * 365;
+  function getCookie(name){
+    var m = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
+    return m ? decodeURIComponent(m[2]) : null;
+  }
+  function setCookie(name, value){
+    document.cookie = name + '=' + encodeURIComponent(value) +
+      '; path=/; max-age=' + MAX_AGE + '; SameSite=Lax';
+  }
+  function enableAnalytics(){
+    // TODO: підключіть аналітику тут, якщо використовуєте Google Analytics.
+  }
+  function hide(){
+    var b = document.getElementById('cookieBanner');
+    if (b) b.classList.remove('show');
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var consent = getCookie(KEY);
+    var banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+    if (consent === 'all') { enableAnalytics(); return; }
+    if (consent === 'essential') { return; }
+    banner.classList.add('show');
+    banner.addEventListener('click', function(e){
+      var btn = e.target.closest('[data-cb]');
+      if (!btn) return;
+      var choice = btn.getAttribute('data-cb');
+      setCookie(KEY, choice);
+      if (choice === 'all') enableAnalytics();
+      hide();
+    });
+  });
+})();
+</script>
 
 <script src="js/script.js" defer></script>
 </body>
